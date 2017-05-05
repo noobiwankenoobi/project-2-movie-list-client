@@ -11,15 +11,127 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+    <body class="container-fluid">
+
+<!-- NAV BAR -->
+
+
+<!-- HEADER -->
+      <h1>Ross's Movie List App</h1>
+
+
+<!-- USER AUTH SECTION -->
+<!-- USER AUTH SECTION -->
+<!-- USER AUTH SECTION -->
+
+<!-- Sign Up, Sign In, Change Password Select Buttons -->
+
+<div class="btn-group">
+  <button type="button" class="btn btn-primary">Sign Up</button>
+  <button type="button" class="btn btn-primary">Sign In</button>
+  <button type="button" class="btn btn-primary">Change Password</button>
+</div>
+
+
+<!-- [Sign In] with Email and Password -->
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd">
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox"> Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+<!-- [Sign Up] with Email and Password -->
+<form class="form-inline">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd">
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<!-- [Change Password] with Email and New Password and Confirmation -->
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd">
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<!-- MAKE A POST SECTION -->
+<!-- MAKE A POST SECTION -->
+<!-- MAKE A POST SECTION -->
+
+<!-- MOVIES USER [HAS] SEEN -->
+<!-- MOVIES USER [HAS] SEEN -->
+
+<div class="form-group row">
+  <!-- Enter in the Movie's [Title] -->
+  <div class="col-xs-4">
+    <label for="ex3">Movie Title</label>
+    <input class="form-control" id="ex3" type="text">
+  </div>
+  <!-- Enter in the Movie's [Director] -->
+  <div class="col-xs-3">
+    <label for="ex2">Film's Director</label>
+    <input class="form-control" id="ex2" type="text">
+  </div>
+<!-- Enter in the [User's Rating] for the Movie -->
+  <div class="col-xs-1">
+    <label for="ex1">Rate the Movie (1-10)</label>
+    <input class="form-control" id="ex1" type="text">
+  </div>
+</div>
+
+<!-- Enter the [User's Comment] about the Movie -->
+    <div class="form-group">
+  <label for="comment">Comment on the Movie:</label>
+  <textarea class="form-control" rows="5" id="movie-comment"></textarea>
+</div>
+
+<!-- MOVIES USER [HAS NOT] YET SEEN -->
+<!-- MOVIES USER [HAS NOT] YET SEEN -->
+
+<div class="form-group row">
+  <!-- Enter in the Movie's [Title] -->
+  <div class="col-xs-4">
+    <label for="ex3">Movie Title</label>
+    <input class="form-control" id="ex3" type="text">
+  </div>
+  <!-- Enter in the Movie's [Director] -->
+  <div class="col-xs-3">
+    <label for="ex2">Film's Director</label>
+    <input class="form-control" id="ex2" type="text">
+  </div>
+</div>
+
+
+
     </body>
 </html>
