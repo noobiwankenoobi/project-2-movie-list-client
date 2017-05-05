@@ -7,6 +7,12 @@
       <!-- Do not add `link` tags unless you know what you are doing -->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
       <!-- Do not add `script` tags unless you know what you are doing -->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
@@ -27,15 +33,17 @@
 
 <!-- Sign Up, Sign In, Change Password Select Buttons -->
 
-<div class="btn-group">
-  <button type="button" class="btn btn-primary">Sign Up</button>
-  <button type="button" class="btn btn-primary">Sign In</button>
-  <button type="button" class="btn btn-primary">Change Password</button>
-</div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary">Sign Up</button>
+        <button type="button" class="btn btn-primary">Sign In</button>
+        <button type="button" class="btn btn-primary">Change Password</button>
+      </div>
 
-
-<!-- [Sign In] with Email and Password -->
+<!-- [Sign Up] with Email and Password -->
       <form class="form-inline">
+
+        <h3>Sign Up</h3>
+
         <div class="form-group">
           <label for="email">Email address:</label>
           <input type="email" class="form-control" id="email">
@@ -44,52 +52,70 @@
           <label for="pwd">Password:</label>
           <input type="password" class="form-control" id="pwd">
         </div>
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+
+<!-- [Sign In] with Email and Password -->
+      <form class="form-inline">
+
+        <h3>Sign In</h3>
+
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
-<!-- [Sign Up] with Email and Password -->
-<form class="form-inline">
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+
 
 <!-- [Change Password] with Email and New Password and Confirmation -->
 
-<form class="form-inline">
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+      <form class="form-inline">
+
+        <h3>Change Password</h3>
+
+        <div class="form-group">
+          <label for="email">Current Email Address:</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">New Password:</label>
+          <input type="password" class="form-control" id="new-pwd">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Cofirm New Password:</label>
+          <input type="password" class="form-control" id="new-pwd-confirm">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
 
 
 <!-- MAKE A POST SECTION -->
 <!-- MAKE A POST SECTION -->
 <!-- MAKE A POST SECTION -->
+<br><br><br>
 
-<!-- MOVIES USER [HAS] SEEN -->
-<!-- MOVIES USER [HAS] SEEN -->
+<!-- BUTTONS TO SWITCH BETWEEN [HAS SEEN] AND [HAS NOT SEEN] -->
+
+<div class="btn-group">
+  <button type="button" class="btn btn-primary">Enter Movie I've Seen</button>
+  <button type="button" class="btn btn-primary">Enter Movie I Haven't Seen</button>
+  <button type="button" class="btn btn-primary">Show Movies I've Seen</button>
+  <button type="button" class="btn btn-primary">Show Movies I Haven't Seen</button>
+</div>
+
+<!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
+<!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
+
+<div class="movies-seen">
+
+  <h2>Enter a Movie I've Seen</h2>
 
 <div class="form-group row">
   <!-- Enter in the Movie's [Title] -->
@@ -104,7 +130,7 @@
   </div>
 <!-- Enter in the [User's Rating] for the Movie -->
   <div class="col-xs-1">
-    <label for="ex1">Rate the Movie (1-10)</label>
+    <label for="ex1">Movie Rating(1-10)</label>
     <input class="form-control" id="ex1" type="text">
   </div>
 </div>
@@ -114,9 +140,15 @@
   <label for="comment">Comment on the Movie:</label>
   <textarea class="form-control" rows="5" id="movie-comment"></textarea>
 </div>
+</div>
 
+<br><br>
 <!-- MOVIES USER [HAS NOT] YET SEEN -->
 <!-- MOVIES USER [HAS NOT] YET SEEN -->
+
+<div class="movies-not-seen">
+
+<h2>Enter a Movie I Want to See</h2>
 
 <div class="form-group row">
   <!-- Enter in the Movie's [Title] -->
@@ -129,6 +161,7 @@
     <label for="ex2">Film's Director</label>
     <input class="form-control" id="ex2" type="text">
   </div>
+</div>
 </div>
 
 
