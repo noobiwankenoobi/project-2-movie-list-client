@@ -122,26 +122,26 @@
 <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
 <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
 
-<div class="movies-seen signed-out-view">
+<div class="movies-seen signed-in-view">
   <!-- change this to "signed-in-view" eventually ^^ -->
 
   <h2>Enter a Movie I've Seen</h2>
 
-  <form id="new-movie-post" class="form-inline">
+  <form id="movie_post" class="form-inline">
 
     <div class="form-group">
       <label for="movie-title">Movie Title</label>
-      <input type="text" name="new-movie-post[title]" class="form-control">
+      <input type="text" name="movie_post[title]" class="form-control">
     </div>
     <br>
     <div class="form-group">
       <label for="director">Director</label>
-      <input type="text" name="new-movie-post[director]" class="form-control">
+      <input type="text" name="movie_post[director]" class="form-control">
     </div>
     <br>
     <div class="form-group">
       <label for="comment">Comment</label>
-      <input type="text" name="new-movie-post[comment]" class="form-control">
+      <input type="text" name="movie_post[comment]" class="form-control">
     </div>
     <br>
     <button type="submit" class="btn btn-success" data-id="post">Submit</button>

@@ -4,10 +4,9 @@ const config = require('../config')
 const store = require('../store')
 
 const newMoviePost = (data) => {
-  console.log('newMoviePost is running!')
   return $.ajax({
     method: 'POST',
-    url: config.apiOrigin + '/movie-post/',
+    url: config.apiOrigin + '/movie_posts/',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },

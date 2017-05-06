@@ -15,7 +15,7 @@ const onNewMoviePost = function (event) {
 }
 
 const addHandlers = () => {
-  $('#new-movie-post').on('submit', onNewMoviePost)
+  $('#movie_post').on('submit', onNewMoviePost)
 }
 
 module.exports = {
