@@ -11,10 +11,7 @@ const signUpFailure = (error) => {
 }
 
 const signInSuccess = (data) => {
-  console.log('Sign in successful!', data)
   store.user = data.user
-  // $('.signed-in-view').show()
-  // $('.not-signed-in').hide()
 }
 
 const signInFailure = (error) => {

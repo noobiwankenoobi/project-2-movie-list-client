@@ -7,16 +7,15 @@ const ui = require('./ui.js')
 
 // Authentication Events
 const onSignUp = function (event) {
-  const data = getFormFields(event.target)
   event.preventDefault()
+  const data = getFormFields(event.target)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
 }
 const onSignIn = function (event) {
-  console.log('onSignIn ran!')
-  const data = getFormFields(event.target)
   event.preventDefault()
+  const data = getFormFields(event.target)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
