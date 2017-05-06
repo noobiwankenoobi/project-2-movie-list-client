@@ -5,16 +5,16 @@ const store = require('../store')
 
 const signUp = (data) => {
   return $.ajax({
-    url: config.apiOrigin + '/sign-up/',
     method: 'POST',
+    url: config.apiOrigin + '/sign-up/',
     data: data
   })
 }
 
 const signIn = (data) => {
   return $.ajax({
-    url: config.apiOrigin + '/sign-in/',
     method: 'POST',
+    url: config.apiOrigin + '/sign-in/',
     data: data
   })
 }
@@ -30,7 +30,7 @@ const changePassword = (data) => {
   })
 }
 
-const signOut = (data) => {
+const signOut = () => {
   return $.ajax({
     method: 'DELETE',
     url: config.apiOrigin + '/sign-out/' + store.user.id,

@@ -30,8 +30,7 @@ const onChangePassword = function (event) {
 // SIGN OUT ISNT DONE! add "data" instead of "event"?
 const onSignOut = function (event) {
   event.preventDefault()
-  const data = getFormFields(event.target)
-  api.signOut(data)
+  api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
 }

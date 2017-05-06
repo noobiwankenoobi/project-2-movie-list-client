@@ -17,8 +17,10 @@ $('.signed-in-view').hide()
 $('.signed-out-view').show()
 
 const authEvents = require('./userAuth/events.js')
+const moviePostEvents = require('./moviePosts/events.js')
 
 // On document ready
 $(() => {
   authEvents.addHandlers()
+  moviePostEvents.addHandlers()
 })
