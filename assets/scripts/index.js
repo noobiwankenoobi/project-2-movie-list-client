@@ -14,7 +14,7 @@ $(() => {
 require('./example')
 
 $('.signed-in-view').hide()
-$('.not-signed-in').show()
+$('.signed-out-view').show()
 
 const authEvents = require('./userAuth/events.js')
 

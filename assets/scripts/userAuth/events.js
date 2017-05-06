@@ -22,7 +22,6 @@ const onSignIn = function (event) {
 }
 const onChangePassword = function (event) {
   event.preventDefault()
-  console.log('Change password event detected')
   const data = getFormFields(event.target)
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
@@ -31,7 +30,6 @@ const onChangePassword = function (event) {
 // SIGN OUT ISNT DONE! add "data" instead of "event"?
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('sign out is running')
   const data = getFormFields(event.target)
   api.signOut(data)
     .then(ui.signOutSuccess)
@@ -42,7 +40,7 @@ const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
-  $('#sign-out').on('submit', onSignOut)
+  $('#sign-out').on('click', onSignOut)
 }
 
 module.exports = {

@@ -19,20 +19,7 @@ const signIn = (data) => {
   })
 }
 
-const signOut = () => {
-  console.log('inside signIn, data is:')
-  console.log(store.user)
-  return $.ajax({
-    method: 'DELETE',
-    url: config.apiOrigin + '/sign-out/' + store.user.id,
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
-
 const changePassword = (data) => {
-  console.log('inside changePassword, data is: ', data)
   return $.ajax({
     method: 'PATCH',
     url: config.apiOrigin + '/change-password/' + store.user.id,
@@ -40,6 +27,16 @@ const changePassword = (data) => {
       Authorization: 'Token token=' + store.user.token
     },
     data: data
+  })
+}
+
+const signOut = (data) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: config.apiOrigin + '/sign-out/' + store.user.id,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 

@@ -11,6 +11,8 @@ const signUpFailure = (error) => {
 }
 
 const signInSuccess = (data) => {
+  $('.signed-in-view').show()
+  $('.signed-out-view').hide()
   store.user = data.user
 }
 
@@ -28,9 +30,8 @@ const changePasswordFailure = (error) => {
 
 const signOutSuccess = () => {
   store.user = null
-  // $('.signed-in-view').hide()
-  // $('.not-signed-in').show()
-  // console.log('Succesfully Signed Out')
+  $('.signed-in-view').hide()
+  $('.signed-out-view').show()
 }
 
 const signOutFailure = (error) => {
