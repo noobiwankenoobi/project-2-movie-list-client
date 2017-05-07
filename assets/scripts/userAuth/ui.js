@@ -13,6 +13,7 @@ const signUpFailure = (error) => {
 const signInSuccess = (data) => {
   $('.signed-in-view').show()
   $('.signed-out-view').hide()
+  $('#my-movies-table').hide()
   store.user = data.user
 }
 

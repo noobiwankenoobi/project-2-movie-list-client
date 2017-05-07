@@ -14,6 +14,17 @@ const newMoviePost = (data) => {
   })
 }
 
+const getMovies = () => {
+  return $.ajax({
+    method: 'GET',
+    url: config.apiOrigin + '/movie_posts/',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
-  newMoviePost
+  newMoviePost,
+  getMovies
 }

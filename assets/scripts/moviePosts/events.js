@@ -14,8 +14,16 @@ const onNewMoviePost = function (event) {
     .catch(ui.newMoviePostFailure)
 }
 
+const onGetMovies = function (event) {
+  event.preventDefault()
+  api.getMovies()
+    .then(ui.getMoviesSuccess)
+    .catch(ui.getMoviesFailure)
+}
+
 const addHandlers = () => {
   $('#movie_post').on('submit', onNewMoviePost)
+  $('#get-movies').on('click', onGetMovies)
 }
 
 module.exports = {
