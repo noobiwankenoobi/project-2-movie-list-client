@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store.js')
+const showMoviePostsTemplate = require('../templates/moviePosts.handlebars')
+const api = require('./api')
 
 const newMoviePostSuccess = (data) => {
   console.log(data)
@@ -10,15 +12,47 @@ const newMoviePostFailure = (error) => {
   console.error(error)
 }
 
+const updateMoviePost = (event) => {
+  event.preventDefault()
+  $('.update-movie-post').show()
+}
+
+const deleteMoviePostSuccess = () => {
+  $('#get-movies').click()
+  // swag^^^drive it like you own it^^^
+  // api.getMovies()
+  //   .then(getMoviesSuccess)
+  //   .catch(getMoviesFailure)
+  // Ask Mike^^which one to do
+}
+
+const deleteMoviePostFailure = (error) => {
+  console.error(error)
+}
+
+const refreshMoviePostsTable = () => {
+  const showMoviePostsHtml = showMoviePostsTemplate({ moviePosts: store.moviePosts })
+  $('#content').empty()
+  $('#content').append(showMoviePostsHtml)
+  $('.update-movie-post').on('click', updateMoviePost)
+  $('.delete-movie-post').on('click', deleteMoviePost)
+}
+
+const deleteMoviePost = (event) => {
+  event.preventDefault()
+  const moviePostId = $(event.target).attr('data-id')
+  store.moviePosts = store.moviePosts.filter((moviePost) => {
+    return String(moviePost.id) !== String(moviePostId)
+  })
+  refreshMoviePostsTable()
+  api.deleteMovie(moviePostId)
+    .then(deleteMoviePostSuccess)
+    .catch(deleteMoviePostFailure)
+}
+
 const getMoviesSuccess = (data) => {
   store.moviePosts = data.movie_posts
-  let tableHTML = ''
-  store.moviePosts.forEach((post) => {
-    tableHTML += '<tr><td>' + post.title + '</td><td>' + post.director + '</td><td>' + post.comment + '</td> <td><button class="btn btn-warning btn-sm" data-id="update">Update Movie</button><button class="btn btn-danger btn-sm" data-id="delete">Delete Movie</button></td></tr>'
-  })
-  $('#my-movies-table-body').html(tableHTML)
-  $('#my-movies-table').show()
-  console.log(data)
+  refreshMoviePostsTable()
 }
 
 const getMoviesFailure = (error) => {

@@ -23,153 +23,169 @@
 
     <body class="container-fluid">
 
-<!-- NAV BAR -->
+      <!-- NAV BAR -->
 
 
-<!-- HEADER -->
-      <h1>Ross's Movie List App</h1>
+      <!-- HEADER -->
+            <h1 style="text-align: center;">Ross's Movie List App</h1>
+
+            <br>
+
+      <!-- USER AUTH SECTION -->
+      <!-- USER AUTH SECTION -->
+      <!-- USER AUTH SECTION -->
+
+      <!-- Sign Up, Sign In, Change Password Select Buttons -->
+
+            <!-- <div class="btn-group">
+              <button type="button" class="btn btn-primary">Sign Up</button>
+              <button type="button" class="btn btn-primary">Sign In</button>
+              <button type="button" class="btn btn-primary">Change Password</button>
+            </div> -->
+
+      <!-- [Sign Up] with Email and Password -->
+            <form id="sign-up" class="form-inline signed-out-view">
+
+              <h3>Sign Up</h3>
+
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" name="credentials[email]" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" name="credentials[password]" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password Confirmation:</label>
+                <input type="password" name="credentials[password_confirmation]" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-default" data-id="sign-up">Submit</button>
+            </form>
 
 
-<!-- USER AUTH SECTION -->
-<!-- USER AUTH SECTION -->
-<!-- USER AUTH SECTION -->
+      <!-- [Sign In] with Email and Password -->
+            <form id="sign-in" class="form-inline signed-out-view">
 
-<!-- Sign Up, Sign In, Change Password Select Buttons -->
+              <h3>Sign In</h3>
+
+              <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" name="credentials[email]" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" name="credentials[password]" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+
+
+      <!-- [Change Password] with Email and New Password and Confirmation -->
+
+            <form id="change-password" class="form-inline signed-in-view">
+
+              <h3>Change Password</h3>
+
+              <div class="form-group">
+                <label for="pwd">Old Password:</label>
+                <input type="password" name="passwords[old]" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="pwd">New Password:</label>
+                <input type="password" name="passwords[new]" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+      <!-- [Sign-out] Button -->
+              <br>
+              <button id="sign-out" class="btn btn-danger signed-in-view">Sign Out</button>
+
+
+      <!-- MAKE A POST SECTION -->
+      <!-- MAKE A POST SECTION -->
+      <!-- MAKE A POST SECTION -->
+      <br><br><br>
+
+      <!-- BUTTON GROUP TO SWITCH BETWEEN [HAS SEEN] AND [HAS NOT SEEN] ETC -->
 
       <!-- <div class="btn-group">
-        <button type="button" class="btn btn-primary">Sign Up</button>
-        <button type="button" class="btn btn-primary">Sign In</button>
-        <button type="button" class="btn btn-primary">Change Password</button>
+        <button type="button" class="btn btn-primary">Enter Movie I've Seen</button>
+        <button type="button" class="btn btn-primary">Enter Movie I Want to See</button>
+        <button type="button" class="btn btn-primary">Show Movies I've Seen</button>
+        <button type="button" class="btn btn-primary">Show Movies I Want to See</button>
+        <button type="button" class="btn btn-primary">Show Favorites</button>
+
       </div> -->
 
-<!-- [Sign Up] with Email and Password -->
-      <form id="sign-up" class="form-inline signed-out-view">
+      <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
+      <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
 
-        <h3>Sign Up</h3>
+      <div class="movies-seen signed-in-view">
+        <!-- change this to "signed-in-view" eventually ^^ -->
 
-        <div class="form-group">
-          <label for="email">Email address:</label>
-          <input type="email" name="credentials[email]" class="form-control">
+        <div class="col-xs-12">
+          <div class="col-xs-5">
+            <h2>Enter Movie Post</h2>
+            <form id="movie_post" class="form-inline">
+
+              <div class="form-group">
+                <label for="movie-title">Movie Title</label>
+                <input type="text" name="movie_post[title]" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="director">Director</label>
+                <input type="text" name="movie_post[director]" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="comment">Comment</label>
+                <input type="text" name="movie_post[comment]" class="form-control">
+              </div>
+              <br>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+
+          <div class="col-xs-5 update-movie-post">
+            <h2>Update Movie Post</h2>
+            <form id="update-movie-post" class="form-inline">
+
+              <div class="form-group">
+                <label for="movie-title">Movie Title</label>
+                <input type="text" name="movie_post[title]" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="director">Director</label>
+                <input type="text" name="movie_post[director]" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="comment">Comment</label>
+                <input type="text" name="movie_post[comment]" class="form-control">
+              </div>
+
+              <br>
+
+              <button type="submit" class="btn btn-success">Submit</button>
+
+            </form>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="pwd">Password:</label>
-          <input type="password" name="credentials[password]" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Password Confirmation:</label>
-          <input type="password" name="credentials[password_confirmation]" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-default" data-id="sign-up">Submit</button>
-      </form>
 
-
-<!-- [Sign In] with Email and Password -->
-      <form id="sign-in" class="form-inline signed-out-view">
-
-        <h3>Sign In</h3>
-
-        <div class="form-group">
-          <label for="email">Email Address:</label>
-          <input type="email" name="credentials[email]" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Password:</label>
-          <input type="password" name="credentials[password]" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-
-
-
-<!-- [Change Password] with Email and New Password and Confirmation -->
-
-      <form id="change-password" class="form-inline signed-in-view">
-
-        <h3>Change Password</h3>
-
-        <div class="form-group">
-          <label for="pwd">Old Password:</label>
-          <input type="password" name="passwords[old]" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="pwd">New Password:</label>
-          <input type="password" name="passwords[new]" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-
-<!-- [Sign-out] Button -->
-        <br>
-        <button id="sign-out" class="btn btn-danger signed-in-view">Sign Out</button>
-
-
-<!-- MAKE A POST SECTION -->
-<!-- MAKE A POST SECTION -->
-<!-- MAKE A POST SECTION -->
-<br><br><br>
-
-<!-- BUTTON GROUP TO SWITCH BETWEEN [HAS SEEN] AND [HAS NOT SEEN] ETC -->
-
-<!-- <div class="btn-group">
-  <button type="button" class="btn btn-primary">Enter Movie I've Seen</button>
-  <button type="button" class="btn btn-primary">Enter Movie I Want to See</button>
-  <button type="button" class="btn btn-primary">Show Movies I've Seen</button>
-  <button type="button" class="btn btn-primary">Show Movies I Want to See</button>
-  <button type="button" class="btn btn-primary">Show Favorites</button>
-
-</div> -->
-
-<!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
-<!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
-
-<div class="movies-seen signed-in-view">
-  <!-- change this to "signed-in-view" eventually ^^ -->
-
-  <h2>Enter a Movie I've Seen</h2>
-
-  <form id="movie_post" class="form-inline">
-
-    <div class="form-group">
-      <label for="movie-title">Movie Title</label>
-      <input type="text" name="movie_post[title]" class="form-control">
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="director">Director</label>
-      <input type="text" name="movie_post[director]" class="form-control">
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="comment">Comment</label>
-      <input type="text" name="movie_post[comment]" class="form-control">
-    </div>
-    <br>
-    <button type="submit" class="btn btn-success" data-id="post">Submit</button>
-
-  </form>
-
-</div>
+      </div>
 
 <br><br>
 
-    <div id="get-movies" class="signed-in-view">
-      <button class="btn btn-primary" data-id="get-movies">Get Movies</button>
-    </div>
+      <div id="get-movies" class="col-xs-12 signed-in-view" style="margin-top: 10px;">
+        <button class="btn btn-primary" data-id="get-movies">Get Movies</button>
+      </div>
 
-<br><br>
-
-    <table id="my-movies-table" class="table table-striped signed-in-view">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Director</th>
-          <th>Comment</th>
-          <th>Manage</th>
-        </tr>
-      </thead>
-      <tbody id="my-movies-table-body">
-      </tbody>
-    </table>
+      <div id="content"></div>
 
   </body>
 

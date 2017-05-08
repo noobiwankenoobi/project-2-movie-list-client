@@ -1,0 +1,28 @@
+<table id="my-movies-table" class="table table-striped signed-in-view">
+
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Director</th>
+      <th>Comment</th>
+      <th>Manage</th>
+    </tr>
+  </thead>
+
+  <tbody id="my-movies-table-body">
+    {{#each moviePosts as |moviePost|}}
+      <tr>
+        <td>{{moviePost.id}}</td>
+        <td>{{moviePost.title}}</td>
+        <td>{{moviePost.director}}</td>
+        <td>{{moviePost.comment}}</td>
+        <td>
+          <button data-id="{{moviePost.id}}" class="btn btn-warning update-movie-post">Edit</button>
+          <button data-id="{{moviePost.id}}" class="btn btn-danger delete-movie-post">Delete</button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+
+</table>
