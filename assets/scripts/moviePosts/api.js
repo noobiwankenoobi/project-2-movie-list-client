@@ -34,7 +34,7 @@ const deleteMovie = (moviePostId) => {
   })
 }
 
-const updateMovie = (data, moviePostId) => {
+const updateMoviePost = (data, moviePostId) => {
   return $.ajax({
     method: 'PATCH',
     url: config.apiOrigin + '/movie_posts/' + moviePostId,
@@ -49,5 +49,5 @@ module.exports = {
   newMoviePost,
   getMovies,
   deleteMovie,
-  updateMovie
+  updateMoviePost
 }
