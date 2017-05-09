@@ -156,26 +156,28 @@
           </div> -->
 
 
-
-
-          <div id="update-field"></div>
-          <!-- <div class="col-xs-5 update-movie-post">
+          <div id="update-field" class="update-field">
+          <div class="col-xs-5 update-movie-post">
             <h2>Update Movie Post</h2>
-            <form id="update-movie-post" class="form-inline">
+            <form id="update-movie-post-input-forms" class="form-inline update-movie-post-input-forms">
 
               <div class="form-group">
+                <label for="movie-title">id</label>
+                <input type="text" name="movie_post[id]" id="update-post-input-id" class="form-control update-post-input">
+              </div>
+              <div class="form-group">
                 <label for="movie-title">Movie Title</label>
-                <input type="text" name="movie_post[title]" class="form-control">
+                <input type="text" name="movie_post[title]" id="update-post-input-movie-title" class="form-control update-post-input">
               </div>
               <br>
               <div class="form-group">
                 <label for="director">Director</label>
-                <input type="text" name="movie_post[director]" class="form-control">
+                <input type="text" name="movie_post[director]" id="update-post-input-director" class="form-control update-post-input">
               </div>
               <br>
               <div class="form-group">
                 <label for="comment">Comment</label>
-                <input type="text" name="movie_post[comment]" class="form-control">
+                <input type="text" name="movie_post[comment]" id="update-post-input-comment" class="form-control update-post-input">
               </div>
 
               <br>
@@ -183,7 +185,7 @@
               <button type="submit" class="btn btn-success">Submit</button>
 
             </form>
-          </div> -->
+          </div>
         </div>
 
       </div>

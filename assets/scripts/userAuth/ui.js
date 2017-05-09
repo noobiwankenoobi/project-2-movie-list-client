@@ -14,7 +14,7 @@ const signInSuccess = (data) => {
   $('.signed-in-view').show()
   $('.signed-out-view').hide()
   $('#my-movies-table').hide()
-  $('.update-movie-post').hide()
+  $('.update-field').hide()
   store.user = data.user
 }
 

@@ -3,7 +3,10 @@
 const store = require('../store.js')
 const showMoviePostsTemplate = require('../templates/moviePosts.handlebars')
 const api = require('./api')
-// const getFormFields = require('../../../lib/get-form-fields')
+const getFormFields = require('../../../lib/get-form-fields')
+
+// [GET ALL] MOVIES
+// [GET ALL] MOVIES
 
 const getMoviesSuccess = (data) => {
   store.moviePosts = data.movie_posts
@@ -14,40 +17,62 @@ const getMoviesFailure = (error) => {
   console.error(error)
 }
 
-// Helper Functions
+// HELPER FUNCTIONS FOR REFRESHING
+// HELPER FUNCTIONS FOR REFRESHING
+
 const refreshMoviePostsData = () => {
   api.getMovies()
     .then(getMoviesSuccess)
     .catch(getMoviesFailure)
 }
 
+const populateUpdatePostFields = () => {
+  // store.moviePost = data.movie_post
+
+  $('#update-post-input-id').val('')
+  $('#update-post-input-movie-title').val('')
+  $('#update-post-input-director').val('')
+  $('#update-post-input-comment').val('')
+}
+
+const showUpdateFields = () => {
+  $('.update-field').show()
+  // populateUpdatePostFields()
+  // $('.update-movie-post-input').on('submit', updateMoviePost)
+}
+
 const refreshMoviePostsTable = () => {
   const showMoviePostsHtml = showMoviePostsTemplate({ moviePosts: store.moviePosts })
   $('#content').empty()
   $('#content').append(showMoviePostsHtml)
-  $('.update-movie-post').on('click', updateMoviePost)
+  $('.edit-movie-button').on('click', showUpdateFields)
   $('.delete-movie-post').on('click', deleteMoviePost)
 }
 
-const newMoviePostFailure = (error) => {
-  console.error(error)
+// [UPDATE] MOVIE POST
+// [UPDATE] MOVIE POST
+
+const updateMoviePostSuccess = () => {
+  refreshMoviePostsData()
 }
 
-// const updateMoviePostFailure = () => {}
-// const updateMoviePostSuccess = () => {}
-//
-const updateMoviePost = () => {}
-//   event.preventDefault()
-//   const updateMoviePostForm = showMoviePostsTemplate({ updatePosts: store.updatePosts })
-//   $('.update-movie-post').show()
-//   $('#update-field').append(updateMoviePostForm)
-//   const data = getFormFields(event.target)
-//   const moviePostId = $(event.target).attr('data-id')
-//   // console.log('onUpdateMoviePost is running!', data)
-//   api.updateMoviePost(moviePostId, data)
-//     .then(updateMoviePostSuccess)
-//     .catch(updateMoviePostFailure)
-// }
+const updateMoviePostFailure = (error) => {
+  console.error(error)
+}
+const updateMoviePost = (updatedData) => {
+  event.preventDefault()
+  const updatedData = getFormFields(event.target)
+  const moviePostId = $(event.target).attr('data-id')
+  // store.moviePosts = store.moviePosts.filter((moviePost) => {
+  //   return String(moviePost.id) !== String(moviePostId)
+  // })
+  refreshMoviePostsTable()
+  api.updateMoviePost(updatedData, moviePostId)
+    .then(deleteMoviePostSuccess)
+    .catch(deleteMoviePostFailure)
+}
+// [DELETE] MOVIE POST
+// [DELETE] MOVIE POST
 
 const deleteMoviePostSuccess = () => {
   refreshMoviePostsData()
@@ -55,11 +80,6 @@ const deleteMoviePostSuccess = () => {
 
 const deleteMoviePostFailure = (error) => {
   console.error(error)
-}
-
-const newMoviePostSuccess = () => {
-  refreshMoviePostsData()
-  $('.new-movie-post-input').val('')
 }
 
 const deleteMoviePost = (event) => {
@@ -72,6 +92,18 @@ const deleteMoviePost = (event) => {
   api.deleteMovie(moviePostId)
     .then(deleteMoviePostSuccess)
     .catch(deleteMoviePostFailure)
+}
+
+// [CREATE] NEW MOVIE POST
+// [CREATE] NEW MOVIE POST
+
+const newMoviePostSuccess = () => {
+  refreshMoviePostsData()
+  $('.new-movie-post-input').val('')
+}
+
+const newMoviePostFailure = (error) => {
+  console.error(error)
 }
 
 module.exports = {
