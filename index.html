@@ -159,9 +159,10 @@
           <div id="update-field" class="update-field">
           <div class="col-xs-5 update-movie-post">
             <h2>Update Movie Post</h2>
+            <h3 id="current-movie-being-updated" class="current-movie-being-updated">Current Movie Being Updated<h3>
             <form id="update-movie-post-input-forms" class="form-inline update-movie-post-input-forms">
 
-              <div class="form-group">
+              <div id="update-id-div" class="form-group update-id-div">
                 <label for="movie-title">id</label>
                 <input type="text" name="movie_post[id]" id="update-post-input-id" class="form-control update-post-input">
               </div>
@@ -193,7 +194,7 @@
 <br><br>
 
       <div id="get-movies" class="col-xs-12 signed-in-view" style="margin-top: 10px;">
-        <button class="btn btn-primary" data-id="get-movies">Get Movies</button>
+        <button class="btn btn-primary" data-id="get-movies">Show All Movies</button>
       </div>
 
       <div id="content"></div>

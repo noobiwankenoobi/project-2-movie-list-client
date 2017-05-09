@@ -34,10 +34,10 @@ const deleteMovie = (moviePostId) => {
   })
 }
 
-const updateMoviePost = (data, moviePostId) => {
+const updateMovie = (data) => {
   return $.ajax({
     method: 'PATCH',
-    url: config.apiOrigin + '/movie_posts/' + moviePostId,
+    url: config.apiOrigin + '/movie_posts/' + data.movie_post.id,
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
@@ -49,5 +49,5 @@ module.exports = {
   newMoviePost,
   getMovies,
   deleteMovie,
-  updateMoviePost
+  updateMovie
 }

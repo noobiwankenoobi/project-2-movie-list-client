@@ -26,19 +26,50 @@ const refreshMoviePostsData = () => {
     .catch(getMoviesFailure)
 }
 
-const populateUpdatePostFields = () => {
-  // store.moviePost = data.movie_post
-
+const clearUpdateInputFields = () => {
   $('#update-post-input-id').val('')
   $('#update-post-input-movie-title').val('')
   $('#update-post-input-director').val('')
   $('#update-post-input-comment').val('')
 }
 
+// [UPDATE] MOVIE POST
+// [UPDATE] MOVIE POST
+
+const updateMoviePostSuccess = () => {
+  refreshMoviePostsData()
+  clearUpdateInputFields()
+  $('.update-field').hide()
+}
+
+const updateMoviePostFailure = (error) => {
+  console.error(error)
+}
+
+// NEEDS MAJOR WORK
+const updateMoviePost = (event) => {
+  console.log(event.target)
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  refreshMoviePostsTable()
+  api.updateMovie(data)
+    .then(updateMoviePostSuccess)
+    .catch(updateMoviePostFailure)
+}
+
 const showUpdateFields = () => {
+  console.log(event.target)
+  event.preventDefault()
+  $('#update-post-input-id').val($(event.target).attr('data-id'))
+  // store.moviePosts = store.data.moviePosts
+  // const currentMovie = store.moviePosts[event.target]
+  // $('#update-post-input-movie-title').val(currentMovie.title)
+  // $('#update-post-input-director').val(currentMovie.director)
+  // $('#update-post-input-comment').val(currentMovie.comment)
   $('.update-field').show()
-  // populateUpdatePostFields()
-  // $('.update-movie-post-input').on('submit', updateMoviePost)
+  $('#update-id-div').hide()
+
+  $('.update-movie-post-input-forms').on('submit', updateMoviePost)
 }
 
 const refreshMoviePostsTable = () => {
@@ -49,28 +80,6 @@ const refreshMoviePostsTable = () => {
   $('.delete-movie-post').on('click', deleteMoviePost)
 }
 
-// [UPDATE] MOVIE POST
-// [UPDATE] MOVIE POST
-
-const updateMoviePostSuccess = () => {
-  refreshMoviePostsData()
-}
-
-const updateMoviePostFailure = (error) => {
-  console.error(error)
-}
-const updateMoviePost = (updatedData) => {
-  event.preventDefault()
-  const updatedData = getFormFields(event.target)
-  const moviePostId = $(event.target).attr('data-id')
-  // store.moviePosts = store.moviePosts.filter((moviePost) => {
-  //   return String(moviePost.id) !== String(moviePostId)
-  // })
-  refreshMoviePostsTable()
-  api.updateMoviePost(updatedData, moviePostId)
-    .then(deleteMoviePostSuccess)
-    .catch(deleteMoviePostFailure)
-}
 // [DELETE] MOVIE POST
 // [DELETE] MOVIE POST
 
@@ -92,6 +101,7 @@ const deleteMoviePost = (event) => {
   api.deleteMovie(moviePostId)
     .then(deleteMoviePostSuccess)
     .catch(deleteMoviePostFailure)
+
 }
 
 // [CREATE] NEW MOVIE POST
@@ -110,5 +120,6 @@ module.exports = {
   newMoviePostSuccess,
   newMoviePostFailure,
   getMoviesSuccess,
-  getMoviesFailure
+  getMoviesFailure,
+  updateMoviePost
 }
