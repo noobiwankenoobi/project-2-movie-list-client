@@ -9,7 +9,7 @@ const userAuthUi = require('../userAuth/ui.js')
 const onNewMoviePost = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  if (data.movie_post.title && data.movie_post.director) {
+  if (data.movie_post.title.trim() && data.movie_post.director.trim()) {
     api.newMoviePost(data)
       .then(ui.newMoviePostSuccess)
       .catch(ui.newMoviePostFailure)

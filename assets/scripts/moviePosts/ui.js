@@ -60,9 +60,13 @@ const updateMoviePost = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   refreshMoviePostsTable()
-  api.updateMovie(data)
-    .then(updateMoviePostSuccess)
-    .catch(updateMoviePostFailure)
+  if (data.movie_post.title.trim() && data.movie_post.director.trim()) {
+    api.updateMovie(data)
+      .then(updateMoviePostSuccess)
+      .catch(updateMoviePostFailure)
+  } else {
+    userAuthUi.userMessage('You Must Enter a Title and Director')
+  }
 }
 
 const showUpdateFields = (event) => {
