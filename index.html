@@ -31,8 +31,9 @@
 
             <br>
 
-            <div id="user-messages" class="col-xs-12"></div>
+            <div id="user-messages" class="col-xs-12 user-messages"></div>
 
+            <br>
       <!-- USER AUTH SECTION -->
       <!-- USER AUTH SECTION -->
       <!-- USER AUTH SECTION -->
@@ -62,7 +63,7 @@
                 <label for="pwd">Password Confirmation:</label>
                 <input type="password" name="credentials[password_confirmation]" class="form-control">
               </div>
-              <button type="submit" class="btn btn-default" data-id="sign-up">Submit</button>
+              <button type="submit" class="btn btn-default">Submit</button>
             </form>
 
 
@@ -196,10 +197,11 @@
 
       </div>
 
-<br><br>
+<br><br><br>
 
-      <div id="get-movies" class="col-xs-12 signed-in-view" style="margin-top: 10px;">
-        <button class="btn btn-primary" data-id="get-movies">Show All Movies</button>
+      <div class="col-xs-12 signed-in-view btn-group" style="margin-top: 30px;">
+        <button id="get-movies" class="btn btn-primary" data-id="get-movies">Show Movies</button>
+        <button id="hide-movies" class="btn btn-danger" data-id="get-movies">Hide Movies</button>
       </div>
 
 <br><br><br><br>

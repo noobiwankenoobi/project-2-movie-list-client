@@ -27,6 +27,8 @@ const signInSuccess = (data) => {
   $('#my-movies-table').hide()
   $('.update-field').hide()
   store.user = data.user
+  $('#sign-up')[0].reset()
+  $('#sign-in')[0].reset()
 }
 
 const signInFailure = (error) => {
@@ -36,6 +38,7 @@ const signInFailure = (error) => {
 
 const changePasswordSuccess = (data) => {
   userMessage('Password Changed!')
+  $('#change-password')[0].reset()
 }
 
 const changePasswordFailure = (error) => {
