@@ -4,16 +4,24 @@ const store = require('../store.js')
 const showMoviePostsTemplate = require('../templates/moviePosts.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
+const userAuthUi = require('../userAuth/ui.js')
 
 // [GET ALL] MOVIES
 // [GET ALL] MOVIES
 
 const getMoviesSuccess = (data) => {
+  userAuthUi.userMessage('Found Some Movies!')
+  store.moviePosts = data.movie_posts
+  refreshMoviePostsTable()
+}
+
+const getMoviesSuccessQuiet = (data) => {
   store.moviePosts = data.movie_posts
   refreshMoviePostsTable()
 }
 
 const getMoviesFailure = (error) => {
+  userAuthUi.userMessage('Failed to get Movies!')
   console.error(error)
 }
 
@@ -22,7 +30,7 @@ const getMoviesFailure = (error) => {
 
 const refreshMoviePostsData = () => {
   api.getMovies()
-    .then(getMoviesSuccess)
+    .then(getMoviesSuccessQuiet)
     .catch(getMoviesFailure)
 }
 
@@ -37,12 +45,14 @@ const clearUpdateInputFields = () => {
 // [UPDATE] MOVIE POST
 
 const updateMoviePostSuccess = () => {
+  userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviePostsData()
   clearUpdateInputFields()
   $('.update-field').hide()
 }
 
 const updateMoviePostFailure = (error) => {
+  userAuthUi.userMessage('Failed to Update Movie!')
   console.error(error)
 }
 
@@ -92,10 +102,12 @@ const refreshMoviePostsTable = () => {
 // [DELETE] MOVIE POST
 
 const deleteMoviePostSuccess = () => {
+  userAuthUi.userMessage('Movie Deleted!')
   refreshMoviePostsData()
 }
 
 const deleteMoviePostFailure = (error) => {
+  userAuthUi.userMessage('Failed to Delete Movie!')
   console.error(error)
 }
 
@@ -115,11 +127,13 @@ const deleteMoviePost = (event) => {
 // [CREATE] NEW MOVIE POST
 
 const newMoviePostSuccess = () => {
+  userAuthUi.userMessage('Added New Movie!')
   refreshMoviePostsData()
   $('.new-movie-post-input').val('')
 }
 
 const newMoviePostFailure = (error) => {
+  userAuthUi.userMessage('Failed to add New Movie!')
   console.error(error)
 }
 
