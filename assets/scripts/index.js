@@ -15,6 +15,7 @@ require('./example')
 
 $('.signed-in-view').hide()
 $('.signed-out-view').show()
+$('#user-messages').hide()
 
 const authEvents = require('./userAuth/events.js')
 const moviePostEvents = require('./moviePosts/events.js')

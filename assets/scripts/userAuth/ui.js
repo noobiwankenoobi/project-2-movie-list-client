@@ -2,15 +2,26 @@
 
 const store = require('../store.js')
 
+// HELPERS
+const userMessage = (message) => {
+  $('#user-messages').text(message)
+  $('#user-messages').show()
+  setTimeout(function () {
+    $('#user-messages').hide()
+  }, 2000)
+}
+
 const signUpSuccess = (data) => {
-  console.log(data)
+  userMessage('Sign Up Succesful!')
 }
 
 const signUpFailure = (error) => {
+  userMessage('Sign Up Failed!')
   console.error(error)
 }
 
 const signInSuccess = (data) => {
+  userMessage('Sign In Successful!')
   $('.signed-in-view').show()
   $('.signed-out-view').hide()
   $('#my-movies-table').hide()
@@ -19,24 +30,28 @@ const signInSuccess = (data) => {
 }
 
 const signInFailure = (error) => {
+  userMessage('Sign In Failed!')
   console.error(error)
 }
 
 const changePasswordSuccess = (data) => {
-  console.log('response is ', data)
+  userMessage('Password Changed!')
 }
 
 const changePasswordFailure = (error) => {
+  userMessage('Failed to Change Password!')
   console.error(error)
 }
 
 const signOutSuccess = () => {
+  userMessage('Sign Out Successful!')
   store.user = null
   $('.signed-in-view').hide()
   $('.signed-out-view').show()
 }
 
 const signOutFailure = (error) => {
+  userMessage('Sign Out Failed!')
   console.error('error on sign out is ', error)
 }
 
@@ -48,5 +63,6 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  userMessage
 }

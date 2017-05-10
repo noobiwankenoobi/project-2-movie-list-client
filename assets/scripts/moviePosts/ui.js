@@ -47,7 +47,6 @@ const updateMoviePostFailure = (error) => {
 }
 
 const updateMoviePost = (event) => {
-  console.log(event.target)
   event.preventDefault()
   const data = getFormFields(event.target)
   refreshMoviePostsTable()
@@ -74,7 +73,8 @@ const showUpdateFields = (event) => {
   $('.update-field').show()
   $('#update-id-div').hide()
 
-  $('.update-movie-post-input-forms').on('submit', updateMoviePost)
+  $('#update-movie-post-input-forms').on('submit', updateMoviePost)
+  $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
 }
 
 // REFRESH TABLE
