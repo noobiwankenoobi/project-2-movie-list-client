@@ -46,7 +46,6 @@ const updateMoviePostFailure = (error) => {
   console.error(error)
 }
 
-// NEEDS MAJOR WORK
 const updateMoviePost = (event) => {
   console.log(event.target)
   event.preventDefault()
@@ -57,20 +56,29 @@ const updateMoviePost = (event) => {
     .catch(updateMoviePostFailure)
 }
 
-const showUpdateFields = () => {
-  console.log(event.target)
+const showUpdateFields = (event) => {
   event.preventDefault()
-  $('#update-post-input-id').val($(event.target).attr('data-id'))
-  // store.moviePosts = store.data.moviePosts
-  // const currentMovie = store.moviePosts[event.target]
-  // $('#update-post-input-movie-title').val(currentMovie.title)
-  // $('#update-post-input-director').val(currentMovie.director)
-  // $('#update-post-input-comment').val(currentMovie.comment)
+  const currentPostId = $(event.target).attr('data-id')
+  $('#update-post-input-id').val(currentPostId)
+  const currentPostArray = store.moviePosts.filter((moviePost) => {
+    return String(moviePost.id) === currentPostId
+  })
+  const currentPost = currentPostArray[0]
+
+// UPDATE FIELD VALS
+  $('#update-post-input-movie-title').val(currentPost.title)
+  $('#update-post-input-director').val(currentPost.director)
+  $('#update-post-input-comment').val(currentPost.comment)
+
+// SHOW / HIDE
   $('.update-field').show()
   $('#update-id-div').hide()
 
   $('.update-movie-post-input-forms').on('submit', updateMoviePost)
 }
+
+// REFRESH TABLE
+// REFRESH TABLE
 
 const refreshMoviePostsTable = () => {
   const showMoviePostsHtml = showMoviePostsTemplate({ moviePosts: store.moviePosts })
@@ -101,7 +109,6 @@ const deleteMoviePost = (event) => {
   api.deleteMovie(moviePostId)
     .then(deleteMoviePostSuccess)
     .catch(deleteMoviePostFailure)
-
 }
 
 // [CREATE] NEW MOVIE POST
