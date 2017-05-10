@@ -1,78 +1,52 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+README
 
-# browser-template
+Movie Posts App
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+What the App does and How it Works:
+This application is a way for a user to sign up, login, and make a list of movies that’ve seen.
+The backend server will be where the movie posts are saved at and retrieved from.
+The client will provide the UX.
+I used bootstrap for the bare minimum of styling/buttons/tables
+I used handlebars to append new post data into the table automatically
+I also used handlebars to generate buttons for each table row (associated with each item)
 
-## Dependencies
+Approach:
+My approach was to make the simplest possible list app I could, while livening it up slightly with a recognizable/enjoyable theme (movies). I spent almost zero time on styling, and used bootstrap to implement form fields, color coded buttons, and the bare minimum structure. My goal was to get the most basic functions required to behave and react in an elegant way, and I spent most of my time on that.
 
-Install with `npm install`.
+Unsolved Problems:
+I believe that I solved all the problems that I intended to solve by the first submittal. I have many ideas for additional features and styling, but in terms of a minimum viable product, I think I was successful in solving every issue that arose. I did a much better job pushing through stuck moments on this project than I did on the last one.
 
--   [Webpack](https://webpack.github.io)
--   [Bootstrap](http://getbootstrap.com)
--   [Handlebars.js](http://handlebarsjs.com)
+Highlights::
+I think I had some of my best coding moments so far as a developer while working on this project, and I’d like to point some of them out.
+I think the best thing I did was make my moviePosts/ui.js file as modular as possible. It contains a lot of functions, and a lot of these functions have to trigger actions that are very similar to actions necessary in other functions as well. The most common repeated action I noticed was the need to refresh my handlebars table after creating/deleting/updating a post. I ran into many problems with this.
 
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
+The issue here is that if you run code to refresh the table that depends on an API call, it will often refresh the table with the data that is already stored in memory (depending on how you attempt to code it), instead of using the updated data from the api that reflects your most recent change. The way I chose to handle this is by creating a function that refreshes the table data, and essentially performs a new “get” request that occurs *after* the most recent change is confirmed successful. So on many .then(successes) I run my “refresh table data” function that also refreshes handlebars once it receives the updated data. I also made a funtion that doesn’t grab the new data but simply refreshes handlebars, as there were a few situations where making a new API call was either unnecessary or could be done in another way.
+Many people  around me were stuck on this problem or similar problems. I felt confident about my solution and showed many people in my group this technique and made sure that everyone understood what was happening and how to replicate it.  So if other people in my group’s code looks similar to mind in that section, that is probably why.
 
-## Installation
+Some other things I think were worth highlighting:
+-refreshMoviePostsTable and refreshMoviePostsData in the moviePosts/ui.js file (mentioned above)
+-My showUpdateFields function on line 72 in moviePosts/ui.js
+-In that function I figured out how to update the form fields to reflect the particular post associated with the “Edit” button that gets pressed. This involved running a filter on the stored data array of moviePost objects, and iterating through until the array consisted of the object that contained the id associated with the data-id of the event.target. Took a few hours to figure that one out.
+-I am also proud of the userMessage function in the userAuth/ui.js file on line 6. This function is used to display confirmation/error messages to the user. I define it once and then am able to call it all over the place in the project on either onSucesss or onFailure functions, passing in different arguments depending on the context.
 
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Move into the new project and `git init`.
-1.  Install dependencies with `npm install`.
+Planning Section:
 
-## Structure
+Link to my User Stores:
+https://docs.google.com/document/d/1K-1OUF_igEPFIp2mNNbkGNAV3JeGInsc7ML6UY-3krI/edit?usp=sharing
 
-Dependencies are stored in [`package.json`](package.json).
+Link to some Wireframes/Entity Relationship Diagram:
+https://docs.google.com/document/d/1VfEJuqGI-U9FVlLdKbe7YBUaMP64m6Gf_elSwMYO7YU/edit?usp=sharing
 
-Do not configure `grunt` packages directly in the
-[`Gruntfile.js`](Gruntfile.js). Instead, store configurations in the
-[`grunt`](grunt) directory. You won't need a top-level key, since that's
-generated by the `Gruntfile.js` based on the filename of the configuration
-object stored in the `grunt` directory.
+Links:
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/index.js`](assets/scripts/index.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+Link to the client repo:
+https://github.com/noobiwankenoobi/project-2-movie-list-client
 
-Developers should set `config.apiOrigins.production` (and
-`config.apiOrigins.development` if it differs from the default).  With
-`apiOrigins` set, developers may rely on `config.apiOrigin` as the base for API
-URLs.
+Link to the deployed client:
+https://noobiwankenoobi.github.io/project-2-movie-list-client/
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss).
+Link to the API repo:
+https://github.com/noobiwankenoobi/project-2-movie-list-api
 
-Developers should use [getFormFields](forms.md) to retrieve form data to send to
-an API.
-
-To deploy a browser-template based SPA, run `grunt deploy`.
-
-## Tasks
-
-Developers should run these often!
-
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt reformat`: reformats all your code in a standard style
--   `grunt <server|serve|s>`: generates bundles, watches, and livereloads
--   `grunt test`: runs any automated tests, depends on `grunt build`
--   `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
-
-## [License](LICENSE)
-
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+Link to the deployed API:
+https://project-2-movie-list-ross.herokuapp.com/
