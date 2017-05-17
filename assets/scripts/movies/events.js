@@ -6,15 +6,15 @@ const api = require('./api')
 const ui = require('./ui.js')
 const userAuthUi = require('../userAuth/ui.js')
 
-const onNewMoviePost = function (event) {
+const onNewMovie = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  if (data.movie_post.comment.trim()) {
-    api.newMoviePost(data)
-      .then(ui.newMoviePostSuccess)
-      .catch(ui.newMoviePostFailure)
+  if (data.movie.title.trim()) {
+    api.newMovie(data)
+      .then(ui.newMovieSuccess)
+      .catch(ui.newMovieFailure)
   } else {
-    userAuthUi.userMessage('You Must Enter a Title and Director')
+    userAuthUi.userMessage('You Must Enter a Title')
   }
 }
 
@@ -31,7 +31,7 @@ const onHideMovies = function (event) {
 }
 
 const addHandlers = () => {
-  $('#movie_post').on('submit', onNewMoviePost)
+  $('#new-movie-form').on('submit', onNewMovie)
   $('#get-movies').on('click', onGetMovies)
   $('#hide-movies').on('click', onHideMovies)
 }

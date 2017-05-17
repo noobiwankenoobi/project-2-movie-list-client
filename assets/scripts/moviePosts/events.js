@@ -14,26 +14,26 @@ const onNewMoviePost = function (event) {
       .then(ui.newMoviePostSuccess)
       .catch(ui.newMoviePostFailure)
   } else {
-    userAuthUi.userMessage('You Must Enter a Title and Director')
+    userAuthUi.userMessage('You Must Enter a Comment')
   }
 }
 
-const onGetMovies = function (event) {
+const onGetMoviePosts = function (event) {
   event.preventDefault()
-  api.getMovies()
-    .then(ui.getMoviesSuccess)
-    .catch(ui.getMoviesFailure)
+  api.getMoviePosts()
+    .then(ui.getMoviePostsSuccess)
+    .catch(ui.getMoviePostsFailure)
 }
 
-const onHideMovies = function (event) {
+const onHideMoviePosts = function (event) {
   event.preventDefault()
   $('#content').empty()
 }
 
 const addHandlers = () => {
   $('#movie_post').on('submit', onNewMoviePost)
-  $('#get-movies').on('click', onGetMovies)
-  $('#hide-movies').on('click', onHideMovies)
+  $('#get-movie-posts').on('click', onGetMoviePosts)
+  $('#hide-movie-posts').on('click', onHideMoviePosts)
 }
 
 module.exports = {

@@ -9,19 +9,19 @@ const userAuthUi = require('../userAuth/ui.js')
 // [GET ALL] MOVIES
 // [GET ALL] MOVIES
 
-const getMoviesSuccess = (data) => {
-  userAuthUi.userMessage('Found Some Movies!')
+const getMoviePostsSuccess = (data) => {
+  userAuthUi.userMessage('Found Some Movie Posts!')
   store.moviePosts = data.movie_posts
   refreshMoviePostsTable()
 }
 
-const getMoviesSuccessQuiet = (data) => {
+const getMoviePostsSuccessQuiet = (data) => {
   store.moviePosts = data.movie_posts
   refreshMoviePostsTable()
 }
 
-const getMoviesFailure = (error) => {
-  userAuthUi.userMessage('Failed to get Movies!')
+const getMoviePostsFailure = (error) => {
+  userAuthUi.userMessage('Failed to get Movie Posts!')
   console.error(error)
 }
 
@@ -29,9 +29,9 @@ const getMoviesFailure = (error) => {
 // HELPER FUNCTIONS FOR REFRESHING
 
 const refreshMoviePostsData = () => {
-  api.getMovies()
-    .then(getMoviesSuccessQuiet)
-    .catch(getMoviesFailure)
+  api.getMoviePosts()
+    .then(getMoviePostsSuccessQuiet)
+    .catch(getMoviePostsFailure)
 }
 
 const clearUpdateInputFields = () => {
@@ -45,14 +45,14 @@ const clearUpdateInputFields = () => {
 // [UPDATE] MOVIE POST
 
 const updateMoviePostSuccess = () => {
-  userAuthUi.userMessage('Movie Updated Successfully!')
+  userAuthUi.userMessage('Movie Post Updated Successfully!')
   refreshMoviePostsData()
   clearUpdateInputFields()
   $('.update-field').hide()
 }
 
 const updateMoviePostFailure = (error) => {
-  userAuthUi.userMessage('Failed to Update Movie!')
+  userAuthUi.userMessage('Failed to Update Movie Post!')
   console.error(error)
 }
 
@@ -60,12 +60,12 @@ const updateMoviePost = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   refreshMoviePostsTable()
-  if (data.movie_post.title.trim() && data.movie_post.director.trim()) {
-    api.updateMovie(data)
+  if (data.movie_post.comment.trim()) {
+    api.updateMoviePost(data)
       .then(updateMoviePostSuccess)
       .catch(updateMoviePostFailure)
   } else {
-    userAuthUi.userMessage('You Must Enter a Title and Director')
+    userAuthUi.userMessage('You Must Enter a Comment')
   }
 }
 
@@ -106,12 +106,12 @@ const refreshMoviePostsTable = () => {
 // [DELETE] MOVIE POST
 
 const deleteMoviePostSuccess = () => {
-  userAuthUi.userMessage('Movie Deleted!')
+  userAuthUi.userMessage('Movie Post Deleted!')
   refreshMoviePostsData()
 }
 
 const deleteMoviePostFailure = (error) => {
-  userAuthUi.userMessage('Failed to Delete Movie!')
+  userAuthUi.userMessage('Failed to Delete Movie Post!')
   console.error(error)
 }
 
@@ -122,7 +122,7 @@ const deleteMoviePost = (event) => {
     return String(moviePost.id) !== String(moviePostId)
   })
   refreshMoviePostsTable()
-  api.deleteMovie(moviePostId)
+  api.deleteMoviePost(moviePostId)
     .then(deleteMoviePostSuccess)
     .catch(deleteMoviePostFailure)
 }
@@ -131,20 +131,20 @@ const deleteMoviePost = (event) => {
 // [CREATE] NEW MOVIE POST
 
 const newMoviePostSuccess = () => {
-  userAuthUi.userMessage('Added New Movie!')
+  userAuthUi.userMessage('Added New Movie Post!')
   refreshMoviePostsData()
   $('.new-movie-post-input').val('')
 }
 
 const newMoviePostFailure = (error) => {
-  userAuthUi.userMessage('Failed to add New Movie!')
+  userAuthUi.userMessage('Failed to add New Movie Post!')
   console.error(error)
 }
 
 module.exports = {
   newMoviePostSuccess,
   newMoviePostFailure,
-  getMoviesSuccess,
-  getMoviesFailure,
+  getMoviePostsSuccess,
+  getMoviePostsFailure,
   updateMoviePost
 }

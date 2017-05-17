@@ -3,11 +3,10 @@
 const config = require('../config')
 const store = require('../store')
 
-const newMoviePost = (data) => {
-  console.log(data)
+const newMovie = (data) => {
   return $.ajax({
     method: 'POST',
-    url: config.apiOrigin + '/movie_posts/',
+    url: config.apiOrigin + '/movies/',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
@@ -18,7 +17,7 @@ const newMoviePost = (data) => {
 const getMovies = () => {
   return $.ajax({
     method: 'GET',
-    url: config.apiOrigin + '/movie_posts/',
+    url: config.apiOrigin + '/movies/',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -28,7 +27,7 @@ const getMovies = () => {
 const deleteMovie = (moviePostId) => {
   return $.ajax({
     method: 'DELETE',
-    url: config.apiOrigin + '/movie_posts/' + moviePostId,
+    url: config.apiOrigin + '/movies/' + moviePostId,
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -38,7 +37,7 @@ const deleteMovie = (moviePostId) => {
 const updateMovie = (data) => {
   return $.ajax({
     method: 'PATCH',
-    url: config.apiOrigin + '/movie_posts/' + data.movie_post.id,
+    url: config.apiOrigin + '/movies/' + data.movie.id,
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
@@ -47,7 +46,7 @@ const updateMovie = (data) => {
 }
 
 module.exports = {
-  newMoviePost,
+  newMovie,
   getMovies,
   deleteMovie,
   updateMovie

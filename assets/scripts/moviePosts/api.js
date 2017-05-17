@@ -4,7 +4,6 @@ const config = require('../config')
 const store = require('../store')
 
 const newMoviePost = (data) => {
-  console.log(data)
   return $.ajax({
     method: 'POST',
     url: config.apiOrigin + '/movie_posts/',
@@ -15,7 +14,7 @@ const newMoviePost = (data) => {
   })
 }
 
-const getMovies = () => {
+const getMoviePosts = () => {
   return $.ajax({
     method: 'GET',
     url: config.apiOrigin + '/movie_posts/',
@@ -25,7 +24,7 @@ const getMovies = () => {
   })
 }
 
-const deleteMovie = (moviePostId) => {
+const deleteMoviePost = (moviePostId) => {
   return $.ajax({
     method: 'DELETE',
     url: config.apiOrigin + '/movie_posts/' + moviePostId,
@@ -35,7 +34,7 @@ const deleteMovie = (moviePostId) => {
   })
 }
 
-const updateMovie = (data) => {
+const updateMoviePost = (data) => {
   return $.ajax({
     method: 'PATCH',
     url: config.apiOrigin + '/movie_posts/' + data.movie_post.id,
@@ -48,7 +47,7 @@ const updateMovie = (data) => {
 
 module.exports = {
   newMoviePost,
-  getMovies,
-  deleteMovie,
-  updateMovie
+  getMoviePosts,
+  deleteMoviePost,
+  updateMoviePost
 }

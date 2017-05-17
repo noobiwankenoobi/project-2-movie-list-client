@@ -86,7 +86,6 @@
 
 
       <!-- [Change Password] with Email and New Password and Confirmation -->
-
             <form id="change-password" class="form-inline signed-in-view">
 
               <h3>Change Password</h3>
@@ -106,105 +105,35 @@
               <br>
               <button id="sign-out" class="btn btn-danger signed-in-view">Sign Out</button>
 
+<!-- END OF [AUTH] SECTION -->
+<!-- END OF [AUTH] SECTION -->
+<!-- END OF [AUTH] SECTION -->
 
-      <!-- MAKE A POST SECTION -->
-      <!-- MAKE A POST SECTION -->
-      <!-- MAKE A POST SECTION -->
+
       <br><br><br>
 
-      <!-- BUTTON GROUP TO SWITCH BETWEEN [HAS SEEN] AND [HAS NOT SEEN] ETC -->
-
-      <!-- <div class="btn-group">
-        <button type="button" class="btn btn-primary">Enter Movie I've Seen</button>
-        <button type="button" class="btn btn-primary">Enter Movie I Want to See</button>
-        <button type="button" class="btn btn-primary">Show Movies I've Seen</button>
-        <button type="button" class="btn btn-primary">Show Movies I Want to See</button>
-        <button type="button" class="btn btn-primary">Show Favorites</button>
-
-      </div> -->
-
-      <!-- USER MAKES A POST ON A CERTAIN MOVIE-->
-      <!-- USER MAKES A POST ON A CERTAIN MOVIE -->
-
-      <div class="movies-seen signed-in-view">
-        <!-- change this to "signed-in-view" eventually ^^ -->
-
-        <div class="col-xs-12">
-          <div class="col-xs-5">
-            <h2>Enter Movie Post</h2>
-            <form id="movie_post" class="form-inline">
-
-              <div class="form-group">
-                <label for="movie-title">Movie Id</label>
-                <input id="movie-id-input" type="number" name="movie_post[movie_id]" class="form-control new-movie-post-input">
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="director">User Id</label>
-                <input id="user-id-input" type="number" name="movie_post[user_id]" class="form-control new-movie-post-input">
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="director">Parent Movie Post Id</label>
-                <input id="parent-movie-post-id-input" type="number" name="movie_post[parent_movie_post_id]" class="form-control new-movie-post-input">
-              </div>
-              <div class="form-group">
-                <label for="comment">Comment</label>
-                <input id="comment-input" type="text" name="movie_post[comment]" class="form-control new-movie-post-input">
-              </div>
-              <br>
-              <button type="submit" class="btn btn-success">Submit</button>
-            </form>
-          </div>
+<!-- MAKE A MOVIE SECTION -->
+<!-- MAKE A MOVIE SECTION -->
+<!-- MAKE A MOVIE SECTION -->
 
 
-<!-- :movie_id, :user_id, :parent_movie_post_id, :comment -->
-
-          <!-- <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-          </div> -->
 
 
-          <div id="update-field" class="update-field">
-          <div class="col-xs-5 update-movie-post">
-            <h2>Update Movie Post</h2>
-            <h3 id="current-movie-being-updated" class="current-movie-being-updated">Current Movie Being Updated</h3>
-            <form id="update-movie-post-input-forms" class="form-inline update-movie-post-input-forms">
 
-              <div id="update-id-div" class="form-group update-id-div">
-                <label for="movie-title">id</label>
-                <input type="text" name="movie_post[id]" id="update-post-input-id" class="form-control update-post-input">
-              </div>
-              <div class="form-group">
-                <label for="movie-title">Movie Title</label>
-                <input type="text" name="movie_post[title]" id="update-post-input-movie-title" class="form-control update-post-input">
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="director">Director</label>
-                <input type="text" name="movie_post[director]" id="update-post-input-director" class="form-control update-post-input">
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="comment">Comment</label>
-                <input type="text" name="movie_post[comment]" id="update-post-input-comment" class="form-control update-post-input">
-              </div>
 
-              <br>
-
-              <button type="submit" id="update-submit-button" class="btn btn-success update-submit-button">Update</button>
-
-            </form>
-
-            <button id="cancel-update-submit-button" class="btn btn-warning cancel-update-submit-button">Cancel</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
 
 <br><br><br>
+
+<!-- Button Group for showing and hiding all movies -->
+<!-- Button Group for showing and hiding all movies -->
+
+
+      <div class="col-xs-12 signed-in-view btn-group" style="margin-top: 30px;">
+        <button id="get-movie-posts" class="btn btn-primary" data-id="get-movie-posts">Show Movie Posts</button>
+        <button id="hide-movie-posts" class="btn btn-danger" data-id="get-movie-posts">Hide Movie Posts</button>
+      </div>
+
+<br><br><br><br>
 
       <div class="col-xs-12 signed-in-view btn-group" style="margin-top: 30px;">
         <button id="get-movies" class="btn btn-primary" data-id="get-movies">Show Movies</button>

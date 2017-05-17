@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
-const showMoviePostsTemplate = require('../templates/moviePosts.handlebars')
+const showMoviesTemplate = require('../templates/movies.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
@@ -11,13 +11,13 @@ const userAuthUi = require('../userAuth/ui.js')
 
 const getMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Some Movies!')
-  store.moviePosts = data.movie_posts
-  refreshMoviePostsTable()
+  store.movies = data.movies
+  refreshMoviesTable()
 }
 
 const getMoviesSuccessQuiet = (data) => {
-  store.moviePosts = data.movie_posts
-  refreshMoviePostsTable()
+  store.movies = data.movies
+  refreshMoviesTable()
 }
 
 const getMoviesFailure = (error) => {
@@ -28,123 +28,123 @@ const getMoviesFailure = (error) => {
 // HELPER FUNCTIONS FOR REFRESHING
 // HELPER FUNCTIONS FOR REFRESHING
 
-const refreshMoviePostsData = () => {
+const refreshMoviesData = () => {
   api.getMovies()
     .then(getMoviesSuccessQuiet)
     .catch(getMoviesFailure)
 }
 
 const clearUpdateInputFields = () => {
-  $('#update-post-input-id').val('')
-  $('#update-post-input-movie-title').val('')
-  $('#update-post-input-director').val('')
-  $('#update-post-input-comment').val('')
+  // $('#update-movie-input-id').val('')
+  // $('#update-movie-input-movie-title').val('')
+  // $('#update-movie-input-director').val('')
+  // $('#update-movie-input-comment').val('')
 }
 
-// [UPDATE] MOVIE POST
-// [UPDATE] MOVIE POST
+// [UPDATE] MOVIE
+// [UPDATE] MOVIE
 
-const updateMoviePostSuccess = () => {
+const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
-  refreshMoviePostsData()
+  refreshMoviesData()
   clearUpdateInputFields()
   $('.update-field').hide()
 }
 
-const updateMoviePostFailure = (error) => {
+const updateMovieFailure = (error) => {
   userAuthUi.userMessage('Failed to Update Movie!')
   console.error(error)
 }
 
-const updateMoviePost = (event) => {
+const updateMovie = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  refreshMoviePostsTable()
-  if (data.movie_post.title.trim() && data.movie_post.director.trim()) {
+  refreshMoviesTable()
+  if (data.movie.title.trim()) {
     api.updateMovie(data)
-      .then(updateMoviePostSuccess)
-      .catch(updateMoviePostFailure)
+      .then(updateMovieSuccess)
+      .catch(updateMovieFailure)
   } else {
-    userAuthUi.userMessage('You Must Enter a Title and Director')
+    userAuthUi.userMessage('You Must Enter a Title')
   }
 }
 
 const showUpdateFields = (event) => {
   event.preventDefault()
-  const currentPostId = $(event.target).attr('data-id')
-  $('#update-post-input-id').val(currentPostId)
-  const currentPostArray = store.moviePosts.filter((moviePost) => {
-    return String(moviePost.id) === currentPostId
+  const currentMovieId = $(event.target).attr('data-id')
+  $('#update-movie-input-id').val(currentMovieId)
+  const currentMovieArray = store.movies.filter((movie) => {
+    return String(movie.id) === currentMovieId
   })
-  const currentPost = currentPostArray[0]
+  const currentMovie = currentMovieArray[0]
 
 // UPDATE FIELD VALS
-  $('#update-post-input-movie-title').val(currentPost.title)
-  $('#update-post-input-director').val(currentPost.director)
-  $('#update-post-input-comment').val(currentPost.comment)
+  $('#update-movie-input-title').val(currentMovie.title)
+  $('#update-movie-input-director').val(currentMovie.director)
+  $('#update-movie-input-comment').val(currentMovie.comment)
 
 // SHOW / HIDE
   $('.update-field').show()
   $('#update-id-div').hide()
 
-  $('#update-movie-post-input-forms').on('submit', updateMoviePost)
+  $('#update-movie-input-forms').on('submit', updateMovie)
   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
 }
 
 // REFRESH TABLE
 // REFRESH TABLE
 
-const refreshMoviePostsTable = () => {
-  const showMoviePostsHtml = showMoviePostsTemplate({ moviePosts: store.moviePosts })
+const refreshMoviesTable = () => {
+  const showMoviesHtml = showMoviesTemplate({ movies: store.movies })
   $('#content').empty()
-  $('#content').append(showMoviePostsHtml)
+  $('#content').append(showMoviesHtml)
   $('.edit-movie-button').on('click', showUpdateFields)
-  $('.delete-movie-post').on('click', deleteMoviePost)
+  $('.delete-movie').on('click', deleteMovie)
 }
 
-// [DELETE] MOVIE POST
-// [DELETE] MOVIE POST
+// [DELETE] MOVIE
+// [DELETE] MOVIE
 
-const deleteMoviePostSuccess = () => {
+const deleteMovieSuccess = () => {
   userAuthUi.userMessage('Movie Deleted!')
-  refreshMoviePostsData()
+  refreshMoviesData()
 }
 
-const deleteMoviePostFailure = (error) => {
+const deleteMovieFailure = (error) => {
   userAuthUi.userMessage('Failed to Delete Movie!')
   console.error(error)
 }
 
-const deleteMoviePost = (event) => {
+const deleteMovie = (event) => {
   event.preventDefault()
-  const moviePostId = $(event.target).attr('data-id')
-  store.moviePosts = store.moviePosts.filter((moviePost) => {
-    return String(moviePost.id) !== String(moviePostId)
+  const movieId = $(event.target).attr('data-id')
+  store.movies = store.movies.filter((movie) => {
+    return String(movie.id) !== String(movieId)
   })
-  refreshMoviePostsTable()
-  api.deleteMovie(moviePostId)
-    .then(deleteMoviePostSuccess)
-    .catch(deleteMoviePostFailure)
+  refreshMoviesTable()
+  api.deleteMovie(movieId)
+    .then(deleteMovieSuccess)
+    .catch(deleteMovieFailure)
 }
 
-// [CREATE] NEW MOVIE POST
-// [CREATE] NEW MOVIE POST
+// [CREATE] NEW MOVIE
+// [CREATE] NEW MOVIE
 
-const newMoviePostSuccess = () => {
+const newMovieSuccess = () => {
   userAuthUi.userMessage('Added New Movie!')
-  refreshMoviePostsData()
-  $('.new-movie-post-input').val('')
+  refreshMoviesData()
+  $('.new-movie-input').val('')
 }
 
-const newMoviePostFailure = (error) => {
+const newMovieFailure = (error) => {
   userAuthUi.userMessage('Failed to add New Movie!')
   console.error(error)
 }
 
 module.exports = {
-  newMoviePostSuccess,
-  newMoviePostFailure,
+  newMovieSuccess,
+  newMovieFailure,
   getMoviesSuccess,
   getMoviesFailure,
-  updateMoviePost
+  updateMovie
 }

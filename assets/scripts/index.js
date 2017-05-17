@@ -19,9 +19,11 @@ $('#user-messages').hide()
 
 const authEvents = require('./userAuth/events.js')
 const moviePostEvents = require('./moviePosts/events.js')
+const moviesEvents = require('./movies/events.js')
 
 // On document ready
 $(() => {
   authEvents.addHandlers()
   moviePostEvents.addHandlers()
+  moviesEvents.addHandlers()
 })

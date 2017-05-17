@@ -24,7 +24,6 @@ const signInSuccess = (data) => {
   userMessage('Sign In Successful!')
   $('.signed-in-view').show()
   $('.signed-out-view').hide()
-  $('#my-movies-table').hide()
   $('.update-field').hide()
   store.user = data.user
   $('#sign-up')[0].reset()

@@ -1,0 +1,30 @@
+<table id="my-movie-comments-table" class="table table-striped signed-in-view">
+
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Movie Id</th>
+      <th>User Id</th>
+      <th>Parent Movie Post Id</th>
+      <th>Comment</th>
+      <th>Management</th>
+    </tr>
+  </thead>
+
+  <tbody id="my-movie-comments-table-body">
+    {{#each movieComments as |movieComment|}}
+      <tr>
+        <td>{{movieComment.id}}</td>
+        <td>{{movieComment.movie_id}}</td>
+        <td>{{movieComment.user_id}}</td>
+        <td>{{movieComment.parent_movie_comment_id}}</td>
+        <td>{{movieComment.comment}}</td>
+        <td>
+          <button data-id="{{movieComment.id}}" class="btn btn-warning edit-movie-button">Edit</button>
+          <button data-id="{{movieComment.id}}" class="btn btn-danger delete-movie-post">Delete</button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+
+</table>
