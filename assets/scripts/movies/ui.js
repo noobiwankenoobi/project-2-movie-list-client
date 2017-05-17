@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
-const showMoviesTemplate = require('../templates/movies.handlebars')
+const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
