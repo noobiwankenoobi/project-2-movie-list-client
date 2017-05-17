@@ -123,8 +123,8 @@
 
       </div> -->
 
-      <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
-      <!-- MOVIES USER [HAS] SEEN AND WANTS TO [ENTER] INTO DB -->
+      <!-- USER MAKES A POST ON A CERTAIN MOVIE-->
+      <!-- USER MAKES A POST ON A CERTAIN MOVIE -->
 
       <div class="movies-seen signed-in-view">
         <!-- change this to "signed-in-view" eventually ^^ -->
@@ -135,15 +135,19 @@
             <form id="movie_post" class="form-inline">
 
               <div class="form-group">
-                <label for="movie-title">Movie Title</label>
-                <input id="movie-title-input" type="text" name="movie_post[title]" class="form-control new-movie-post-input">
+                <label for="movie-title">Movie Id</label>
+                <input id="movie-id-input" type="number" name="movie_post[movie_id]" class="form-control new-movie-post-input">
               </div>
               <br>
               <div class="form-group">
-                <label for="director">Director</label>
-                <input id="director-input" type="text" name="movie_post[director]" class="form-control new-movie-post-input">
+                <label for="director">User Id</label>
+                <input id="user-id-input" type="number" name="movie_post[user_id]" class="form-control new-movie-post-input">
               </div>
               <br>
+              <div class="form-group">
+                <label for="director">Parent Movie Post Id</label>
+                <input id="parent-movie-post-id-input" type="number" name="movie_post[parent_movie_post_id]" class="form-control new-movie-post-input">
+              </div>
               <div class="form-group">
                 <label for="comment">Comment</label>
                 <input id="comment-input" type="text" name="movie_post[comment]" class="form-control new-movie-post-input">
@@ -152,6 +156,9 @@
               <button type="submit" class="btn btn-success">Submit</button>
             </form>
           </div>
+
+
+<!-- :movie_id, :user_id, :parent_movie_post_id, :comment -->
 
           <!-- <div class="form-group">
             <label for="comment">Comment:</label>
@@ -162,7 +169,7 @@
           <div id="update-field" class="update-field">
           <div class="col-xs-5 update-movie-post">
             <h2>Update Movie Post</h2>
-            <h3 id="current-movie-being-updated" class="current-movie-being-updated">Current Movie Being Updated<h3>
+            <h3 id="current-movie-being-updated" class="current-movie-being-updated">Current Movie Being Updated</h3>
             <form id="update-movie-post-input-forms" class="form-inline update-movie-post-input-forms">
 
               <div id="update-id-div" class="form-group update-id-div">
@@ -194,8 +201,8 @@
 
           </div>
         </div>
-
       </div>
+    </div>
 
 <br><br><br>
 
