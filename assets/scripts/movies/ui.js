@@ -95,7 +95,7 @@ const showUpdateFields = (event) => {
 // REFRESH TABLE
 
 const refreshMoviesTable = () => {
-  const showMoviesHtml = showMoviesTemplate({ movies: store.movies })
+  const showMoviesHtml = showMoviesTemplate({movies: store.movies})
   $('#content').empty()
   $('#content').append(showMoviesHtml)
   $('.edit-movie-button').on('click', showUpdateFields)
