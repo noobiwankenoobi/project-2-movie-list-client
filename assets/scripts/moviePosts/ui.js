@@ -98,7 +98,7 @@ const refreshMoviePostsTable = () => {
   const showMoviePostsHtml = showMoviePostsTemplate({ moviePosts: store.moviePosts })
   $('#content').empty()
   $('#content').append(showMoviePostsHtml)
-  $('.edit-movie-button').on('click', showUpdateFields)
+  $('.edit-movie-post-button').on('click', showUpdateFields)
   $('.delete-movie-post').on('click', deleteMoviePost)
 }
 

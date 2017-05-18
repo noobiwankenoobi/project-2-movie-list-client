@@ -91,6 +91,10 @@ const showUpdateFields = (event) => {
   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
 }
 
+const showMoviePage = (event) => {
+
+}
+
 // REFRESH TABLE
 // REFRESH TABLE
 
@@ -99,7 +103,8 @@ const refreshMoviesTable = () => {
   $('#content').empty()
   $('#content').append(showMoviesHtml)
   $('.edit-movie-button').on('click', showUpdateFields)
-  $('.delete-movie').on('click', deleteMovie)
+  $('.delete-movie-button').on('click', deleteMovie)
+  $('.movie-page-button').on('click', showMoviePage)
 }
 
 // [DELETE] MOVIE
