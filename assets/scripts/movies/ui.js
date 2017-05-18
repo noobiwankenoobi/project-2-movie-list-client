@@ -133,7 +133,8 @@ const deleteMovie = (event) => {
 const newMovieSuccess = () => {
   userAuthUi.userMessage('Added New Movie!')
   refreshMoviesData()
-  $('.new-movie-input').val('')
+  $('#create-new-movie-input-forms').val('')
+  $('#form-fields-handlebars-insert').empty()
 }
 
 const newMovieFailure = (error) => {

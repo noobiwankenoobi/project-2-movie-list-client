@@ -133,7 +133,8 @@ const deleteMoviePost = (event) => {
 const newMoviePostSuccess = () => {
   userAuthUi.userMessage('Added New Movie Post!')
   refreshMoviePostsData()
-  $('.new-movie-post-input').val('')
+  $('#create-new-movie-post-input-forms').val('')
+  $('#form-fields-handlebars-insert').empty()
 }
 
 const newMoviePostFailure = (error) => {

@@ -5,6 +5,7 @@ const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui.js')
 const userAuthUi = require('../userAuth/ui.js')
+const showCreateMoviePostFields = require('../templates/createMoviePostFields.handlebars')
 
 const onNewMoviePost = function (event) {
   event.preventDefault()
@@ -30,10 +31,28 @@ const onHideMoviePosts = function (event) {
   $('#content').empty()
 }
 
+const onShowCreateMoviePostFields = function (event) {
+  event.preventDefault()
+  const showCreateMoviePostFieldsHtml = showCreateMoviePostFields()
+  $('#content').empty()
+  $('#form-fields-handlebars-insert').empty()
+  $('#form-fields-handlebars-insert').append(showCreateMoviePostFieldsHtml)
+  $('#create-new-movie-post-input-forms').on('submit', onNewMoviePost)
+}
+
+const onHideCreateMoviePostFields = function (event) {
+  event.preventDefault()
+  $('#content').empty()
+  $('#form-fields-handlebars-insert').empty()
+  $('#create-new-movie-post-input-forms').val('')
+}
+
 const addHandlers = () => {
-  $('#movie_post').on('submit', onNewMoviePost)
+  $('#create-new-movie-post-input-forms').on('submit', onNewMoviePost)
   $('#get-movie-posts').on('click', onGetMoviePosts)
   $('#hide-movie-posts').on('click', onHideMoviePosts)
+  $('#show-create-movie-post-fields').on('click', onShowCreateMoviePostFields)
+  $('#hide-create-movie-post-fields').on('click', onHideCreateMoviePostFields)
 }
 
 module.exports = {

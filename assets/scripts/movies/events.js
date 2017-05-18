@@ -2,7 +2,6 @@
 
 const getFormFields = require('../../../lib/get-form-fields')
 const showCreateMovieFields = require('../templates/createMovieFields.handlebars')
-const showCreateMoviePostFields = require('../templates/createMoviePostFields.handlebars')
 
 const api = require('./api')
 const ui = require('./ui.js')
@@ -46,25 +45,9 @@ const onHideCreateMovieFields = function (event) {
   $('#form-fields-handlebars-insert').empty()
 }
 
-const onShowCreateMoviePostFields = function (event) {
-  event.preventDefault()
-  const showCreateMoviePostFieldsHtml = showCreateMoviePostFields()
-  $('#content').empty()
-  $('#form-fields-handlebars-insert').append(showCreateMoviePostFieldsHtml)
-  // $('#create-new-movie-input-form-button').on('click', onNewMovie)
-}
-
-const onHideCreateMoviePostFields = function (event) {
-  event.preventDefault()
-  $('#content').empty()
-  $('#form-fields-handlebars-insert').empty()
-}
-
 const addHandlers = () => {
   $('#show-create-movie-fields').on('click', onShowCreateMovieFields)
   $('#hide-create-movie-fields').on('click', onHideCreateMovieFields)
-  $('#show-create-movie-post-fields').on('click', onShowCreateMoviePostFields)
-  $('#hide-create-movie-post-fields').on('click', onHideCreateMoviePostFields)
   $('#get-movies').on('click', onGetMovies)
   $('#hide-movies').on('click', onHideMovies)
 }
