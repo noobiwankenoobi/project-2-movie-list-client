@@ -25,29 +25,59 @@
 <!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
 <!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
 
-    <body class="container-fluid">
+    <body class="container-fluid" style="padding-top: 50px;">
 
 <!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
 <!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
 
-<nav class="navbar navbar-fixed-top navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">MovieDiscuss</a>
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">MovieDiscuss</a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active signed-in-view"><a href="#">Home</a></li>
+        <li class="signed-in-view"><a href="#">My Movies</a></li>
+        <li class="signed-in-view"><a href="#">All Movies</a></li>
+        <li class="signed-in-view"><a href="#">My Comments</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="signed-out-view"><a href="#">Sign Up</a></li>
+        <li class="signed-out-view"><a href="#">Sign In</a></li>
+        <li class="signed-in-view"><a href="#">Change Password</a></li>
+        <li class="signed-in-view"><a href="#">Sign Out</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <!-- <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">My Movies</a></li>
-      <li><a href="#">All Movies</a></li>
-      <li><a href="#">Page 3</a></li>
+        <li><a href="#">Left</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-center">
+        <li><a href="#">Center</a></li>
+        <li><a href="#">Center</a></li>
+      <li><a href="#">Center</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Right</a></li>
     </ul>
   </div>
-</nav>
+</nav> -->
 
 <!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
 <!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
 
-        <div id="header-div" class="header-div container">
+        <div id="header-div" class="header-div container col-xs-12 signed-in-view">
             <h1 style="text-align: center;">Welcome to my Movie Discussion App!</h1>
             <h4 style="text-align: center;">This is a place where people can create movies and discuss them with others</h4>
         </div>
