@@ -36,50 +36,34 @@
         <a class="navbar-brand" href="#">MovieDiscuss</a>
       </div>
       <ul class="nav navbar-nav navbar-left">
-        <li class="active signed-in-view"><a href="#">Home</a></li>
-        <li class="signed-in-view"><a href="#">My Movies</a></li>
-        <li class="signed-in-view"><a href="#">All Movies</a></li>
-        <li class="signed-in-view"><a href="#">My Comments</a></li>
+        <li id="go-home-button" class="active signed-in-view"><a href="#">Home</a></li>
+        <li id="my-movies-button" class="signed-in-view"><a href="#">My Movies</a></li>
+        <li id="all-movies-button" class="signed-in-view"><a href="#">All Movies</a></li>
+        <li id="my-comments-button" class="signed-in-view"><a href="#">My Comments</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="signed-out-view"><a href="#">Sign Up</a></li>
-        <li class="signed-out-view"><a href="#">Sign In</a></li>
-        <li class="signed-in-view"><a href="#">Change Password</a></li>
-        <li class="signed-in-view"><a href="#">Sign Out</a></li>
+        <li id="sign-up-show-modal-button" class="signed-out-view"><a href="#">Sign Up</a></li>
+        <li id="sign-in-show-modal-button" class="signed-out-view"><a href="#">Sign In</a></li>
+        <li id="change-password-show-modal-button" class="signed-in-view"><a href="#">Change Password</a></li>
+        <li id="sign-out-button" class="signed-in-view"><a href="#">Sign Out</a></li>
       </ul>
     </div>
   </nav>
-
-  <!-- <nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li><a href="#">Left</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-center">
-        <li><a href="#">Center</a></li>
-        <li><a href="#">Center</a></li>
-      <li><a href="#">Center</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Right</a></li>
-    </ul>
-  </div>
-</nav> -->
 
 <!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
 <!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
 
         <div id="header-div" class="header-div container col-xs-12 signed-in-view">
-            <h1 style="text-align: center;">Welcome to my Movie Discussion App!</h1>
-            <h4 style="text-align: center;">This is a place where people can create movies and discuss them with others</h4>
+          <h1 style="text-align: center;">Welcome to my Movie Discussion App!</h1>
+          <h4 style="text-align: center;">This is a place where people can create movies and discuss them with others</h4>
+        </div>
+
+        <div class="container signed-out-view">
+          <div class="jumbotron">
+              <h1>Welcome to MovieDiscuss</h1>
+              <p>This is a place where people can create movies and discuss them with others</p>
+          </div>
         </div>
 
 <br><br><br><br>
@@ -88,84 +72,6 @@
 <!-- [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | -->
 
         <div id="user-messages" class="col-xs-12 user-messages"></div>
-
-<br><br><br><br>
-
-<!-- USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION-->
-<!-- USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION-->
-<!-- USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION | USER AUTH SECTION-->
-
-    <div id="auth-section-div" class="auth-section-div container-fluid">
-
-      <!-- [Sign Up] with Email and Password -->
-            <form id="sign-up" class="form-inline signed-out-view">
-
-              <h3>Sign Up</h3>
-
-              <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" name="credentials[email]" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" name="credentials[password]" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password Confirmation:</label>
-                <input type="password" name="credentials[password_confirmation]" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
-
-      <!-- [Sign In] with Email and Password -->
-            <form id="sign-in" class="form-inline signed-out-view">
-
-              <h3>Sign In</h3>
-
-              <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" name="credentials[email]" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" name="credentials[password]" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
-
-
-      <!-- [Change Password] with Email and New Password and Confirmation -->
-            <form id="change-password" class="form-inline signed-in-view">
-
-              <h3>Change Password</h3>
-
-              <div class="form-group">
-                <label for="pwd">Old Password:</label>
-                <input type="password" name="passwords[old]" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pwd">New Password:</label>
-                <input type="password" name="passwords[new]" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
-<br><br><br><br>
-
-      <!-- [Sign-out] Button -->
-              <button id="sign-out" class="btn btn-danger signed-in-view">Sign Out</button>
-
-        </div>
-
-<!-- END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | -->
-<!-- END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | -->
-<!-- END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | -->
-<!-- END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | END OF [AUTH] SECTION | -->
-
-
-<br><br><br><br>
 
 
 <!-- [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | -->
@@ -222,11 +128,138 @@
 
 <!-- [FORMFIELDS] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
 <!-- [FORMFIELDS] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
+
       <div id="form-fields-handlebars-insert"></div>
 
 <!-- [TABLE] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
 <!-- [TABLE] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
+
       <div id="content"></div>
+
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+
+      <!-- Sign Up Modal -->
+      <!-- Sign Up Modal -->
+      <div id="sign-up-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Create Account</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="sign-up" class="form-inline signed-out-view">
+
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" name="credentials[email]" class="form-control" required>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" name="credentials[password]" class="form-control" required>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="pwd">Password Confirmation:</label>
+                  <input type="password" name="credentials[password_confirmation]" class="form-control" required>
+                </div>
+                <br>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Create</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sign In Modal -->
+      <!-- Sign In Modal -->
+      <div id="sign-in-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Login</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="sign-in" class="form-inline signed-out-view">
+
+                <div class="form-group">
+                  <label for="email">Email Address:</label>
+                  <input type="email" name="credentials[email]" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" name="credentials[password]" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Sign In</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Change Password Modal -->
+      <!-- Change Password Modal -->
+      <div id="change-password-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Change Password</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="change-password" class="form-inline signed-in-view">
+
+                <div class="form-group">
+                  <label for="pwd">Old Password:</label>
+                  <input type="password" name="passwords[old]" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">New Password:</label>
+                  <input type="password" name="passwords[new]" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
 
 
   </body>

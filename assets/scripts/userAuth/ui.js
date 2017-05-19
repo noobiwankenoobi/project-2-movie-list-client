@@ -13,6 +13,7 @@ const userMessage = (message) => {
 
 const signUpSuccess = (data) => {
   userMessage('Sign Up Succesful!')
+  $('#sign-up-modal').modal('hide')
 }
 
 const signUpFailure = (error) => {
@@ -28,6 +29,7 @@ const signInSuccess = (data) => {
   store.user = data.user
   $('#sign-up')[0].reset()
   $('#sign-in')[0].reset()
+  $('#sign-in-modal').modal('hide')
 }
 
 const signInFailure = (error) => {
@@ -38,6 +40,7 @@ const signInFailure = (error) => {
 const changePasswordSuccess = (data) => {
   userMessage('Password Changed!')
   $('#change-password')[0].reset()
+  $('#change-password-modal').modal('hide')
 }
 
 const changePasswordFailure = (error) => {
