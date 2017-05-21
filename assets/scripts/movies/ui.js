@@ -17,6 +17,7 @@ const onShowCreateMovieModal = function (event) {
 
 const onShowEditMovieModal = function (event) {
   event.preventDefault()
+  $('#edit-movie-id-input').val(currentPostId)
   $('#edit-movie-modal').modal('show')
 }
 
@@ -56,14 +57,15 @@ const refreshUserMovies = () => {
 //   $('.delete-movie-button').on('click', __)
 // }
 
-const openEditMovieFields = () => {
+const onOpenEditMovieFields = () => {
   event.preventDefault()
   const currentMovieId = $(event.target).attr('data-id')
-  $('#update-movie-input-id').val(currentMovieId)
+  $('#edit-movie-input-id').val(currentMovieId)
   const currentMovieArray = store.movies.filter((movie) => {
     return String(movie.id) === currentMovieId
   })
   const currentMovie = currentMovieArray[0]
+
   // UPDATE EDIT FIELD VALUES |
   $('#edit-movie-input-title').val(currentMovie.title)
   $('#edit-movie-input-title-imdb-url').val(currentMovie.title_imdb_url)
@@ -81,8 +83,9 @@ const openEditMovieFields = () => {
   $('#edit-movie-input-music-imdb-url').val(currentMovie.music_imdb_url)
 
   $('#edit-movie-input-img_url').val(currentMovie.img_url)
-
-
+  // SHOW EDIT MOVIE MODAL
+  $('#edit-movie-modal').modal('show')
+}
 
 // SHOW / HIDE
 //   $('.update-field').show()
@@ -243,7 +246,7 @@ const showMoviePage = (event) => {
       $('#content').empty()
       $('#content').append(moviePageHTML)
       // add clicks for edit and delete Movie-- only owner of movie sees buttons
-      $('.edit-movie-button').click(onShowEditMovieModal)
+      $('.edit-movie-button').click(onOpenEditMovieFields)
       $('.delete-movie-button').click(onDeleteMovie)
       // add clicks for edit and delete Comment (moviePost)-- only owner of movie sees buttons
       $('.edit-comment-button').click('')

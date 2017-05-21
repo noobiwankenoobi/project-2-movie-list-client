@@ -104,8 +104,20 @@
 <!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
 <!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
 <!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
-<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
 
+
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
 <div id="create-movie-modal" class="modal fade signed-in-view" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -177,8 +189,93 @@
 </div>
 </div>
 
+<!-- Edit Movie Modal -->
+<!-- Edit Movie Modal -->
+<!-- Edit Movie Modal -->
+<!-- Edit Movie Modal -->
+<!-- Edit Movie Modal -->
+<div id="edit-movie-modal" class="modal fade signed-in-view" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Movie</h2>
+      </div>
+      <div class="modal-body">
+      <form id="edit-movie-input-forms" class="form-inline edit-movie-input-forms">
 
-<!-- [USER AUTH] MODALS HERE -->
+        <div class="form-group">
+          <label for="movie-id">Movie Id</label>
+          <input id="edit-movie-id-input" type="number" name="movie[id]" class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="movie-title">Movie Title*</label>
+          <input id="edit-movie-title-input" type="text" name="movie[title]" class="form-control" autofocus required>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="director">IMDB URL for Movie*</label>
+          <input id="edit-movie-title-imdb-url-input" type="text" name="movie[title_imdb_url]" class="form-control" required>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="director">Rotten Tomatoes Link for Movie</label>
+          <input id="edit-movie-title-rotten-url-input" type="text" name="movie[title_rotten_url]" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comment">Director*</label>
+          <input id="edit-movie-director-input" type="text" name="movie[director]" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">IMDB URL for Director</label>
+          <input id="edit-movie-director-imdb-url-input" type="text" name="movie[director_imdb_url]" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comment">Writer*</label>
+          <input id="edit-movie-writer-input" type="text" name="movie[writer]" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">IMDB URL for Writer</label>
+          <input id="edit-movie-writer-imdb-url-input" type="text" name="movie[writer_imdb_url]" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comment">Cinematographer*</label>
+          <input id="edit-movie-cinematographer-input" type="text" name="movie[cinematographer]" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">IMDB URL for Cinematographer</label>
+          <input id="edit-movie-cinematographer-imdb-url-input" type="text" name="movie[cinematographer_imdb_url]" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comment">Score Composer*</label>
+          <input id="edit-movie-composer-input" type="text" name="movie[music]" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">IMDB URL for Score Composer</label>
+          <input id="edit-movie-composer-imdb-url-input" type="text" name="movie[music_imdb_url]" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="comment">Image URL for Movie*</label>
+          <input id="edit-movie-image-url-input" type="text" name="movie[img_url]" class="form-control" required>
+        </div>
+
+        <br>
+        <div class="modal-footer">
+          <button id="submit-edit-movie-button" type="submit" class="btn btn-success">Create</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
 
       <!-- Sign Up Modal -->
       <!-- Sign Up Modal -->
