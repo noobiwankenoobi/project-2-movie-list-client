@@ -10,12 +10,43 @@ const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
 const createMovieFieldsView = require('../templates/createMovieFields.handlebars')
 
+//
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
+const newMovieSuccess = () => {
+  userAuthUi.userMessage('Added New Movie!')
+  refreshMoviesData()
+  $('.create-new-movie-input-forms').val('')
+  // $('#create-movie-modal').modal('hide')
+}
+
+const newMovieFailure = (error) => {
+  userAuthUi.userMessage('Failed to add New Movie!')
+  console.error(error)
+}
+
+const onNewMovie = function (event) {
+  event.preventDefault()
+  console.log('EVENT DOT TARGET IS: ', event.target)
+  const data = getFormFields(event.target)
+  console.log('EVENT DOT TARGET IS 2: ', event.target)
+  console.log(data)
+  // if (data.movie.title.trim()) {
+  api.newMovie(data)
+    .then(newMovieSuccess)
+    .catch(newMovieFailure)
+  // } else {
+  //   userAuthUi.userMessage('You Must Enter a Title')
+  // }
+}
+
 const onShowCreateMovieFields = function (event) {
   event.preventDefault()
   const createMovieFieldsHTML = createMovieFieldsView()
   $('#content').empty()
   $('#content').append(createMovieFieldsHTML)
-  $('submit-create-new-movie-button').on('click', )
+  $('.movie_params').on('submit', onNewMovie)
   // $('#create-movie-modal').modal('show')
 }
 
@@ -37,7 +68,7 @@ const refreshAllMovies = () => {
   $('#content').empty()
   $('#content').append(allMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
-  $('.view-create-movie-modal-button').on('click', onShowCreateMovieFields)
+  $('.view-create-movie-fields-button').on('click', onShowCreateMovieFields)
 }
 
 // [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] |
@@ -46,7 +77,7 @@ const refreshUserMovies = () => {
   $('#content').empty()
   $('#content').append(userMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
-  $('.view-create-movie-modal-button').on('click', onShowCreateMovieFields)
+  // $('.view-create-movie-fields-button').on('click', onShowCreateMovieFields)
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
@@ -57,7 +88,6 @@ const refreshUserMovies = () => {
 
 const onOpenEditMovieFields = () => {
   event.preventDefault()
-
   // $('#edit-movie-modal').modal('show')
   const currentMovieId = $(event.target).attr('data-id')
   $('#edit-movie-id-input').val(currentMovieId)
@@ -132,6 +162,7 @@ const getUserMoviesSuccess = (data) => {
     return store.user.id === movie.user_id
   })
   refreshUserMovies()
+  $('#show-create-movie-fields').on('click', onShowCreateMovieFields)
 }
 
 const getUserMoviesFailure = (error) => {
@@ -253,22 +284,6 @@ const showMoviePage = (event) => {
     })
     .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)
-}
-
-//
-// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
-// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
-// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
-const newMovieSuccess = () => {
-  userAuthUi.userMessage('Added New Movie!')
-  refreshMoviesData()
-  $('#create-new-movie-input-forms').val('')
-  $('#create-movie-modal').modal('hide')
-}
-
-const newMovieFailure = (error) => {
-  userAuthUi.userMessage('Failed to add New Movie!')
-  console.error(error)
 }
 
 module.exports = {

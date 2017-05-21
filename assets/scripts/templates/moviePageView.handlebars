@@ -29,7 +29,7 @@
     {{#each comments as |comment|}}
       <div class="col-xs-12">
         <div class="panel panel-info">
-          <div class="panel-heading">Author ID: {{comment.user_id}} Parent Comment Id: {{comment.parent_movie_post_id}}</div>
+          <div class="panel-heading"><b>Author ID:</b> {{comment.user_id}}|   <b>Comment Id:</b> {{comment.id}}|   <b>Parent Comment Id:</b> {{comment.parent_movie_post_id}}|</div>
           <div class="panel-body">{{comment.comment}}</div>
           {{#if comment.isUserMoviePost}}
             <div class="panel-footer" style="text-align: right;">

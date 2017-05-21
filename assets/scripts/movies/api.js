@@ -24,10 +24,10 @@ const getMovies = () => {
   })
 }
 
-const deleteMovie = (moviePostId) => {
+const deleteMovie = (movieId) => {
   return $.ajax({
     method: 'DELETE',
-    url: config.apiOrigin + '/movies/' + moviePostId,
+    url: config.apiOrigin + '/movies/' + movieId,
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
