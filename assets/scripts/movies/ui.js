@@ -9,6 +9,8 @@ const userAuthUi = require('../userAuth/ui.js')
 const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
 const createMovieFieldsView = require('../templates/createMovieFields.handlebars')
+const editMovieFieldsView = require('../templates/updateMovieFields.handlebars')
+const moviePostEvents = require('../moviePosts/events')
 
 //
 // [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
@@ -47,6 +49,7 @@ const onShowCreateMovieFields = function (event) {
   $('#content').empty()
   $('#content').append(createMovieFieldsHTML)
   $('.movie_params').on('submit', onNewMovie)
+  $('.cancel-create-new-movie-button').on('click', cancelCreateMovie)
   // $('#create-movie-modal').modal('show')
 }
 
@@ -82,12 +85,25 @@ const refreshUserMovies = () => {
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
 // const refreshMoviePage = () => {
-//   $('.edit-movie-button').on('click', __)
-//   $('.delete-movie-button').on('click', __)
+//   $('.edit-movie-button').on('click', )
+//   $('.delete-movie-button').on('click', )
 // }
+const cancelCreateMovie = () => {
+  clearCreateInputFields()
+  $('#content').empty()
+}
+
+const cancelUpdateMovie = () => {
+  clearEditInputFields()
+  $('#content').empty()
+}
 
 const onOpenEditMovieFields = () => {
   event.preventDefault()
+  const editMovieFieldsHTML = editMovieFieldsView()
+  $('#content').empty()
+  $('#content').append(editMovieFieldsHTML)
+  $('.hide-movie-id').hide()
   // $('#edit-movie-modal').modal('show')
   const currentMovieId = $(event.target).attr('data-id')
   $('#edit-movie-id-input').val(currentMovieId)
@@ -97,44 +113,71 @@ const onOpenEditMovieFields = () => {
   const currentMovie = currentMovieArray[0]
 
   // UPDATE EDIT FIELD VALUES |
-  $('#edit-movie-input-title').val(currentMovie.title)
-  $('#edit-movie-input-title-imdb-url').val(currentMovie.title_imdb_url)
+  $('#edit-movie-title-input').val(currentMovie.title)
+  $('#edit-movie-title-imdb-url-input').val(currentMovie.title_imdb_url)
 
-  $('#edit-movie-input-director').val(currentMovie.director)
-  $('#edit-movie-input-director-imdb-url').val(currentMovie.director_imdb_url)
+  $('#edit-movie-director-input').val(currentMovie.director)
+  $('#edit-movie-director-imdb-url-input').val(currentMovie.director_imdb_url)
 
-  $('#edit-movie-input-writer').val(currentMovie.writer)
-  $('#edit-movie-input-writer-imdb-url').val(currentMovie.writer_imdb_url)
+  $('#edit-movie-writer-input').val(currentMovie.writer)
+  $('#edit-movie-writer-imdb-url-input').val(currentMovie.writer_imdb_url)
 
-  $('#edit-movie-input-cinematographer').val(currentMovie.cinematographer)
-  $('#edit-movie-input-title-imdb-url').val(currentMovie.cinematographer_imdb_url)
+  $('#edit-movie-cinematographer-input').val(currentMovie.cinematographer)
+  $('#edit-movie-cinematographer-imdb-url-input').val(currentMovie.cinematographer_imdb_url)
 
-  $('#edit-movie-input-music').val(currentMovie.music)
-  $('#edit-movie-input-music-imdb-url').val(currentMovie.music_imdb_url)
+  $('#edit-movie-composer-input').val(currentMovie.music)
+  $('#edit-movie-composer-imdb-url-input').val(currentMovie.music_imdb_url)
 
-  $('#edit-movie-input-img_url').val(currentMovie.img_url)
+  $('#edit-movie-image-url-input').val(currentMovie.img_url)
   // SHOW EDIT MOVIE MODAL
+  $('.edit-movie_params').on('submit', onUpdateMovie)
+  $('.cancel-edit-movie-button').on('click', cancelUpdateMovie)
 }
 
-// SHOW / HIDE
-//   $('.update-field').show()
-//   $('#update-id-div').hide()
-//
-//   $('#update-movie-input-forms').on('submit', onUpdateMovie)
-//   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
-// }
+const clearCreateInputFields = () => {
+  $('#edit-movie-input-title').val('')
+  $('#edit-movie-input-title-imdb-url').val('')
 
-const clearUpdateInputFields = () => {
-  // $('#update-movie-input-id').val('')
-  // $('#update-movie-input-movie-title').val('')
-  // $('#update-movie-input-director').val('')
-  // $('#update-movie-input-comment').val('')
+  $('#edit-movie-input-director').val('')
+  $('#edit-movie-input-director-imdb-url').val('')
+
+  $('#edit-movie-input-writer').val('')
+  $('#edit-movie-input-writer-imdb-url').val('')
+
+  $('#edit-movie-input-cinematographer').val('')
+  $('#edit-movie-input-title-imdb-url').val('')
+
+  $('#edit-movie-input-music').val('')
+  $('#edit-movie-input-music-imdb-url').val('')
+
+  $('#edit-movie-input-img_url').val('')
+}
+
+const clearEditInputFields = () => {
+  $('#update-movie-input-id').val('')
+
+  $('#edit-movie-input-title').val('')
+  $('#edit-movie-input-title-imdb-url').val('')
+
+  $('#edit-movie-input-director').val('')
+  $('#edit-movie-input-director-imdb-url').val('')
+
+  $('#edit-movie-input-writer').val('')
+  $('#edit-movie-input-writer-imdb-url').val('')
+
+  $('#edit-movie-input-cinematographer').val('')
+  $('#edit-movie-input-title-imdb-url').val('')
+
+  $('#edit-movie-input-music').val('')
+  $('#edit-movie-input-music-imdb-url').val('')
+
+  $('#edit-movie-input-img_url').val('')
 }
 
 //
-// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
-// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
-// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
 const getMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Some Movies!')
   store.movies = data.movies
@@ -152,9 +195,9 @@ const getMoviesFailure = (error) => {
   console.error(error)
 }
 
-// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
-// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
-// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
 const getUserMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Your Movies!')
   store.movies = data.movies
@@ -171,14 +214,15 @@ const getUserMoviesFailure = (error) => {
 }
 
 //
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
 const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviesData()
-  clearUpdateInputFields()
-  $('.edit-movie-modal').hide()
+  clearEditInputFields()
+  $('#content').empty()
+  showMoviePage()
 }
 
 const updateMovieFailure = (error) => {
@@ -190,20 +234,16 @@ const onUpdateMovie = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   refreshAllMovies()
-  if (data.movie.title.trim()) {
-    api.updateMovie(data)
-      .then(updateMovieSuccess)
-      .catch(updateMovieFailure)
-  } else {
-    userAuthUi.userMessage('You Must Enter a Title')
-  }
+  api.updateMovie(data)
+    .then(updateMovieSuccess)
+    .catch(updateMovieFailure)
 }
 
 //
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-//
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE |
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE |
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE |
+
 // runs another get request which automatically feeds into refreshAllMovies
 const deleteMovieSuccess = () => {
   userAuthUi.userMessage('Movie Deleted!')
@@ -231,7 +271,7 @@ const onDeleteMovie = (event) => {
 // GET [MOVIE POSTS] (COMMENTS) RESPONSES | GET [MOVIE POSTS] (COMMENTS) RESPONSES
 // GET [MOVIE POSTS] (COMMENTS) RESPONSES | GET [MOVIE POSTS] (COMMENTS) RESPONSES
 const getMoviePostsSuccess = () => {
-  // userAuthUi.userMessage('Loaded comments')
+
 }
 
 const getMoviePostsFailure = (error) => {
@@ -240,6 +280,9 @@ const getMoviePostsFailure = (error) => {
 }
 
 //
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
@@ -281,6 +324,8 @@ const showMoviePage = (event) => {
       // add clicks for edit and delete Comment (moviePost)-- only owner of movie sees buttons
       $('.edit-comment-button').click('')
       $('.delete-comment-button').click('')
+      // submit comment click handler
+      $('.submit-comment-on-movie').on('submit', moviePostEvents.onNewMoviePost)
     })
     .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)

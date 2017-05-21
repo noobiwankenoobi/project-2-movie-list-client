@@ -22,9 +22,26 @@
       </div>
     {{/if}}
   </div>
+
   <br>
+
+  <div class="container enter-comment-on-movie">
+  <h4>Comment directly on the film or respond to someone in the comment section</h4>
+  <form class="submit-comment-on-movie">
+    <div class="form-group">
+      <label for="comment">Comment on: | {{movie.title}} |</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <div>
+    <button data-id="{{movie.id}}" type="submit" class="btn btn-success submit-comment-on-movie">Submit</button>
+  </div>
+  </form>
+  </div>
+
+  <br>
+
   <div class="comment-section">
-    <h3>Comments</h3>
+    <h3>All Comments</h3>
     <br>
     {{#each comments as |comment|}}
       <div class="col-xs-12">

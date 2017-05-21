@@ -22,16 +22,6 @@ const onGetUserMovies = function (event) {
     .catch(ui.getUserMoviesFailure)
 }
 
-// const onHideMovies = function (event) {
-//   event.preventDefault()
-//   $('#content').empty()
-// }
-
-// const onHideCreateMovieFields = function (event) {
-//   $('#content').empty()
-//   $('#form-fields-handlebars-insert').empty()
-// }
-
 // GO HOME | GO HOME | GO HOME | GO HOME | GO HOME |
 const onGoHome = function (event) {
   event.preventDefault()

@@ -9,6 +9,8 @@ const showCreateMoviePostFields = require('../templates/createMoviePostFields.ha
 
 const onNewMoviePost = function (event) {
   event.preventDefault()
+  const currentMovieId = $(event.target).attr('data-id')
+  const commentingOnMovie = currentMovieId
   const data = getFormFields(event.target)
   if (data.movie_post.comment.trim()) {
     api.newMoviePost(data)
