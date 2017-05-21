@@ -5,6 +5,7 @@
       <img class="movie-page-main-image" src="{{movie.img_url}}" alt="Movie Poster" style="padding: 15px">
     </div>
   </div>
+
   <div class="movie-content center-block">
     <h4>Title: <a href="{{movie.title_imdb_url}}">{{movie.title}}</a></h4>
     <h4>Director: <a href="{{movie.director_imdb_url}}">{{movie.director}}</a></h4>
@@ -12,6 +13,17 @@
     <h4>Cinematographer: <a href="{{movie.cinematographer_imdb_url}}">{{movie.cinematographer}}</a></h4>
     <h4>Music: <a href="{{movie.music_imdb_url}}">{{movie.music}}</a></h4>
     <h4>Rotten Tomatoes: <a href="{{movie.title_rotten_url}}">Reviews</a></h4>
+  </div>
+
+  <div class="comment-section">
+
+    {{#each comments as |comment|}}
+      <div class="panel panel-info">
+        <div class="panel-heading">{{comment.user_id}}</div>
+        <div class="panel-body">{{comment.comment}}</div>
+      </div>
+    {{/each}}
+
   </div>
 
 </div>
