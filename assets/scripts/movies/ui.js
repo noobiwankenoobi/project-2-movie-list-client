@@ -5,7 +5,7 @@ const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
-const allMoviesPage = require('../templates/allMoviesPage.handlebars')
+const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
 
 // HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
@@ -22,17 +22,23 @@ const refreshMoviesData = () => {
 
 // [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] |
 const refreshAllMovies = () => {
-  const allMoviesHTML = allMoviesPage({movies: store.movies})
+  const allMoviesHTML = moviesPage({movies: store.movies})
   $('#content').empty()
   $('#content').append(allMoviesHTML)
-  $('.edit-movie-button').on('click', showUpdateFields)
-  $('.delete-movie-button').on('click', deleteMovie)
+  $('.view-movie-page-button').on('click', showMoviePage)
+}
+
+const refreshUserMovies = () => {
+  const userMoviesHTML = moviesPage({movies: store.userMovies})
+  $('#content').empty()
+  $('#content').append(userMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
 // const refreshMoviePage = () => {
-//
+//  $('.edit-movie-button').on('click', showUpdateFields)
+// $('.delete-movie-button').on('click', deleteMovie)
 // }
 
 const clearUpdateInputFields = () => {
@@ -44,7 +50,6 @@ const clearUpdateInputFields = () => {
 
 // [GET ALL] MOVIES
 // [GET ALL] MOVIES
-
 const getMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Some Movies!')
   store.movies = data.movies
@@ -61,9 +66,24 @@ const getMoviesFailure = (error) => {
   console.error(error)
 }
 
-// [UPDATE] MOVIE
-// [UPDATE] MOVIE
+// [GET USER] MOVIES
+// [GET USER] MOVIES
+const getUserMoviesSuccess = (data) => {
+  userAuthUi.userMessage('Found Your Movies!')
+  store.movies = data.movies
+  store.userMovies = data.movies.filter((movie) => {
+    return store.user.id === movie.user_id
+  })
+  refreshUserMovies()
+}
 
+const getUserMoviesFailure = (error) => {
+  userAuthUi.userMessage('Failed to get Your Movies!')
+  console.error(error)
+}
+
+// [UPDATE] MOVIE
+// [UPDATE] MOVIE
 const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviesData()
@@ -168,5 +188,7 @@ module.exports = {
   newMovieFailure,
   getMoviesSuccess,
   getMoviesFailure,
-  updateMovie
+  updateMovie,
+  getUserMoviesSuccess,
+  getUserMoviesFailure
 }
