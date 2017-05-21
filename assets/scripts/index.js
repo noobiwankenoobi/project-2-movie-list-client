@@ -26,4 +26,6 @@ $(() => {
   authEvents.addHandlers()
   moviePostEvents.addHandlers()
   moviesEvents.addHandlers()
+  $('#create-movie-modal').modal('hide')
+  $('#update-movie-modal').modal('hide')
 })

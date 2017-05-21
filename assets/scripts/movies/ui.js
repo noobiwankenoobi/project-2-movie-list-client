@@ -9,6 +9,17 @@ const userAuthUi = require('../userAuth/ui.js')
 const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
 
+
+const onShowCreateMovieModal = function (event) {
+  event.preventDefault()
+  $('#create-movie-modal').modal('show')
+}
+
+const onShowEditMovieModal = function (event) {
+  event.preventDefault()
+  $('#edit-movie-modal').modal('show')
+}
+
 // HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
 // HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
 // HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
@@ -27,6 +38,7 @@ const refreshAllMovies = () => {
   $('#content').empty()
   $('#content').append(allMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
+  $('.view-create-movie-modal-button').on('click', onShowCreateMovieModal)
 }
 
 // [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] |
@@ -35,12 +47,49 @@ const refreshUserMovies = () => {
   $('#content').empty()
   $('#content').append(userMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
+  $('.view-create-movie-modal-button').on('click', onShowCreateMovieModal)
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
 // const refreshMoviePage = () => {
-//  $('.edit-movie-button').on('click', showUpdateFields)
-// $('.delete-movie-button').on('click', deleteMovie)
+//   $('.edit-movie-button').on('click', __)
+//   $('.delete-movie-button').on('click', __)
+// }
+
+const openEditMovieFields = () => {
+  event.preventDefault()
+  const currentMovieId = $(event.target).attr('data-id')
+  $('#update-movie-input-id').val(currentMovieId)
+  const currentMovieArray = store.movies.filter((movie) => {
+    return String(movie.id) === currentMovieId
+  })
+  const currentMovie = currentMovieArray[0]
+  // UPDATE EDIT FIELD VALUES |
+  $('#edit-movie-input-title').val(currentMovie.title)
+  $('#edit-movie-input-title-imdb-url').val(currentMovie.title_imdb_url)
+
+  $('#edit-movie-input-director').val(currentMovie.director)
+  $('#edit-movie-input-director-imdb-url').val(currentMovie.director_imdb_url)
+
+  $('#edit-movie-input-writer').val(currentMovie.writer)
+  $('#edit-movie-input-writer-imdb-url').val(currentMovie.writer_imdb_url)
+
+  $('#edit-movie-input-cinematographer').val(currentMovie.cinematographer)
+  $('#edit-movie-input-title-imdb-url').val(currentMovie.cinematographer_imdb_url)
+
+  $('#edit-movie-input-music').val(currentMovie.music)
+  $('#edit-movie-input-music-imdb-url').val(currentMovie.music_imdb_url)
+
+  $('#edit-movie-input-img_url').val(currentMovie.img_url)
+
+
+
+// SHOW / HIDE
+//   $('.update-field').show()
+//   $('#update-id-div').hide()
+//
+//   $('#update-movie-input-forms').on('submit', onUpdateMovie)
+//   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
 // }
 
 const clearUpdateInputFields = () => {
@@ -96,7 +145,7 @@ const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviesData()
   clearUpdateInputFields()
-  $('.update-field').hide()
+  $('.edit-movie-modal').hide()
 }
 
 const updateMovieFailure = (error) => {
@@ -104,7 +153,7 @@ const updateMovieFailure = (error) => {
   console.error(error)
 }
 
-const updateMovie = (event) => {
+const onUpdateMovie = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   refreshAllMovies()
@@ -117,35 +166,37 @@ const updateMovie = (event) => {
   }
 }
 
-// [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO |
-// [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO |
-// const showUpdateFields = (event) => {
-//   event.preventDefault()
-//   const currentMovieId = $(event.target).attr('data-id')
-//   $('#update-movie-input-id').val(currentMovieId)
-//   const currentMovieArray = store.movies.filter((movie) => {
-//     return String(movie.id) === currentMovieId
-//   })
-//   const currentMovie = currentMovieArray[0]
-
-// UPDATE FIELD VALS
-  // $('#update-movie-input-title').val(currentMovie.title)
-  // $('#update-movie-input-director').val(currentMovie.director)
-  // $('#update-movie-input-comment').val(currentMovie.comment)
-
-// SHOW / HIDE
-//   $('.update-field').show()
-//   $('#update-id-div').hide()
 //
-//   $('#update-movie-input-forms').on('submit', updateMovie)
-//   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
-// }
-
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
+//
+// runs another get request which automatically feeds into refreshAllMovies
+const deleteMovieSuccess = () => {
+  userAuthUi.userMessage('Movie Deleted!')
+  refreshMoviesData()
+}
 
+const deleteMovieFailure = (error) => {
+  userAuthUi.userMessage('Failed to Delete Movie!')
+  console.error(error)
+}
 
+const onDeleteMovie = (event) => {
+  event.preventDefault()
+  const movieId = $(event.target).attr('data-id')
+  store.movies = store.movies.filter((movie) => {
+    return String(movie.id) !== String(movieId)
+  })
+  refreshAllMovies()
+  api.deleteMovie(movieId)
+    .then(deleteMovieSuccess)
+    .catch(deleteMovieFailure)
+}
+
+//
+// GET [MOVIE POSTS] (COMMENTS) RESPONSES | GET [MOVIE POSTS] (COMMENTS) RESPONSES
+// GET [MOVIE POSTS] (COMMENTS) RESPONSES | GET [MOVIE POSTS] (COMMENTS) RESPONSES
 const getMoviePostsSuccess = () => {
   // userAuthUi.userMessage('Loaded comments')
 }
@@ -156,9 +207,9 @@ const getMoviePostsFailure = (error) => {
 }
 
 //
-// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
-// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
-// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // this function gets movies from memory and stores both user movies and all movies
 //
 const showMoviePage = (event) => {
@@ -192,40 +243,14 @@ const showMoviePage = (event) => {
       $('#content').empty()
       $('#content').append(moviePageHTML)
       // add clicks for edit and delete Movie-- only owner of movie sees buttons
-      $('.edit-movie-button').click('')
-      $('.delete-movie-button').click('')
+      $('.edit-movie-button').click(onShowEditMovieModal)
+      $('.delete-movie-button').click(onDeleteMovie)
       // add clicks for edit and delete Comment (moviePost)-- only owner of movie sees buttons
       $('.edit-comment-button').click('')
       $('.delete-comment-button').click('')
     })
     .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)
-}
-
-//
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-const deleteMovieSuccess = () => {
-  userAuthUi.userMessage('Movie Deleted!')
-  refreshMoviesData()
-}
-
-const deleteMovieFailure = (error) => {
-  userAuthUi.userMessage('Failed to Delete Movie!')
-  console.error(error)
-}
-
-const deleteMovie = (event) => {
-  event.preventDefault()
-  const movieId = $(event.target).attr('data-id')
-  store.movies = store.movies.filter((movie) => {
-    return String(movie.id) !== String(movieId)
-  })
-  refreshAllMovies()
-  api.deleteMovie(movieId)
-    .then(deleteMovieSuccess)
-    .catch(deleteMovieFailure)
 }
 
 //
@@ -236,7 +261,7 @@ const newMovieSuccess = () => {
   userAuthUi.userMessage('Added New Movie!')
   refreshMoviesData()
   $('#create-new-movie-input-forms').val('')
-  $('#form-fields-handlebars-insert').empty()
+  $('#create-movie-modal').modal('hide')
 }
 
 const newMovieFailure = (error) => {
@@ -249,8 +274,8 @@ module.exports = {
   newMovieFailure,
   getMoviesSuccess,
   getMoviesFailure,
-  updateMovie,
-  deleteMovie,
+  onUpdateMovie,
+  onDeleteMovie,
   getUserMoviesSuccess,
   getUserMoviesFailure
 }
