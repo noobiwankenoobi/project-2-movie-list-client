@@ -1,29 +1,46 @@
-<div id="movie-page-view" class="container-fluid movie-page-view">
+<div id="movie-page-view" class="row movie-page-view">
 
+<div class="col-xs-8 offset-xs-2 centered">
   <div class="row movie-poster-div">
-    <div class="col-xs-6 center block">
-      <img class="movie-page-main-image" src="{{movie.img_url}}" alt="Movie Poster" style="padding: 15px">
+    <div class="center-block">
+      <img class="movie-page-main-image" src="{{movie.img_url}}" alt="Movie Poster" style="padding: 15px; max-width: 100%;">
     </div>
   </div>
-
+  <br>
   <div class="movie-content center-block">
+    <h2>Movie Info</h2>
     <h4>Title: <a href="{{movie.title_imdb_url}}">{{movie.title}}</a></h4>
     <h4>Director: <a href="{{movie.director_imdb_url}}">{{movie.director}}</a></h4>
     <h4>Writer: <a href="{{movie.writer_imdb_url}}">{{movie.writer}}</a></h4>
     <h4>Cinematographer: <a href="{{movie.cinematographer_imdb_url}}">{{movie.cinematographer}}</a></h4>
     <h4>Music: <a href="{{movie.music_imdb_url}}">{{movie.music}}</a></h4>
     <h4>Rotten Tomatoes: <a href="{{movie.title_rotten_url}}">Reviews</a></h4>
+    {{#if movie.isUserMovie}}
+      <div class="movie-management-buttons">
+        <button data-id="{{movie.id}}" class="btn btn-warning edit-movie-button">Edit Movie</button>
+        <button data-id="{{movie.id}}" class="btn btn-danger delete-movie-button">Delete Movie</button>
+      </div>
+    {{/if}}
   </div>
-
+  <br>
   <div class="comment-section">
-
+    <h3>Comments</h3>
+    <br>
     {{#each comments as |comment|}}
-      <div class="panel panel-info">
-        <div class="panel-heading">{{comment.user_id}}</div>
-        <div class="panel-body">{{comment.comment}}</div>
+      <div class="col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Author ID: {{comment.user_id}}</div>
+          <div class="panel-body">{{comment.comment}}</div>
+          {{#if comment.isUserMoviePost}}
+            <div class="panel-footer" style="text-align: right;">
+              <button data-id="{{comment.id}}" class="btn btn-sm btn-warning edit-comment-button">Edit</button>
+              <button data-id="{{comment.id}}" class="btn btn-sm btn-danger delete-comment-button">Delete</button>
+            </div>
+          {{/if}}
+        </div>
       </div>
     {{/each}}
 
   </div>
-
+</div>
 </div>

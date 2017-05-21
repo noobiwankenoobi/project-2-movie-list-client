@@ -3,6 +3,7 @@
 const store = require('../store.js')
 const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
+const moviePostsApi = require('../moviePosts/api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
 const moviesPage = require('../templates/moviesPage.handlebars')
@@ -131,6 +132,11 @@ const showUpdateFields = (event) => {
   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
 }
 
+const getMoviePostsFailure = (error) => {
+  userAuthUi.userMessage('Failed to get Movie Posts!')
+  console.error(error)
+}
+
 const showMoviePage = (event) => {
   event.preventDefault()
   const currentMovieId = $(event.target).attr('data-id')
@@ -138,9 +144,30 @@ const showMoviePage = (event) => {
     return String(movie.id) === currentMovieId
   })
   const currentMovie = currentMovieArray[0]
-  const moviePageHTML = moviePageView({movie: currentMovie})
-  $('#content').empty()
-  $('#content').append(moviePageHTML)
+  currentMovie.isUserMovie = false
+  if (store.user.id === currentMovie.user_id) {
+    currentMovie.isUserMovie = true
+  }
+  moviePostsApi.getMoviePosts()
+    .then((data) => {
+      store.moviePosts = data.movie_posts
+      store.currentMoviePosts = data.movie_posts.filter((moviePost) => {
+        return moviePost.movie_id === currentMovie.id
+      })
+      store.currentMoviePosts.forEach((moviePost) => {
+        moviePost.isUserMoviePost = false
+        if (store.user.id === moviePost.user_id) {
+          moviePost.isUserMoviePost = true
+        }
+      })
+      const moviePageHTML = moviePageView({
+        movie: currentMovie,
+        comments: store.currentMoviePosts
+      })
+      $('#content').empty()
+      $('#content').append(moviePageHTML)
+    })
+    .catch(getMoviePostsFailure)
 }
 
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
