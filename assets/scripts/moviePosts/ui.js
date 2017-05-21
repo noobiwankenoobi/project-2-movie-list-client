@@ -102,9 +102,8 @@ const refreshMoviePostsTable = () => {
   $('.delete-movie-post').on('click', deleteMoviePost)
 }
 
-// [DELETE] MOVIE POST
-// [DELETE] MOVIE POST
-
+// [DELETE] MOVIE POST | [DELETE] MOVIE POST | [DELETE] MOVIE POST
+// [DELETE] MOVIE POST | [DELETE] MOVIE POST | [DELETE] MOVIE POST
 const deleteMoviePostSuccess = () => {
   userAuthUi.userMessage('Movie Post Deleted!')
   refreshMoviePostsData()

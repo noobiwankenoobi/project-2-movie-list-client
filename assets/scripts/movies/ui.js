@@ -29,6 +29,7 @@ const refreshAllMovies = () => {
   $('.view-movie-page-button').on('click', showMoviePage)
 }
 
+// [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] |
 const refreshUserMovies = () => {
   const userMoviesHTML = moviesPage({movies: store.userMovies})
   $('#content').empty()
@@ -49,14 +50,17 @@ const clearUpdateInputFields = () => {
   // $('#update-movie-input-comment').val('')
 }
 
-// [GET ALL] MOVIES
-// [GET ALL] MOVIES
+//
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
+// [GET (ALL)] MOVIES | [GET (ALL)] MOVIES | [GET (ALL)] MOVIES |
 const getMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Some Movies!')
   store.movies = data.movies
   refreshAllMovies()
 }
 
+// same as getMoviesSuccess but without the success message
 const getMoviesSuccessQuiet = (data) => {
   store.movies = data.movies
   refreshAllMovies()
@@ -67,8 +71,9 @@ const getMoviesFailure = (error) => {
   console.error(error)
 }
 
-// [GET USER] MOVIES
-// [GET USER] MOVIES
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
+// [GET (USER)] MOVIES | [GET (USER)] MOVIES | [GET (USER)] MOVIES |
 const getUserMoviesSuccess = (data) => {
   userAuthUi.userMessage('Found Your Movies!')
   store.movies = data.movies
@@ -83,8 +88,10 @@ const getUserMoviesFailure = (error) => {
   console.error(error)
 }
 
-// [UPDATE] MOVIE
-// [UPDATE] MOVIE
+//
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
 const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviesData()
@@ -110,26 +117,37 @@ const updateMovie = (event) => {
   }
 }
 
-const showUpdateFields = (event) => {
-  event.preventDefault()
-  const currentMovieId = $(event.target).attr('data-id')
-  $('#update-movie-input-id').val(currentMovieId)
-  const currentMovieArray = store.movies.filter((movie) => {
-    return String(movie.id) === currentMovieId
-  })
-  const currentMovie = currentMovieArray[0]
+// [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO |
+// [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO | [UPDATE MOVIE] INFO |
+// const showUpdateFields = (event) => {
+//   event.preventDefault()
+//   const currentMovieId = $(event.target).attr('data-id')
+//   $('#update-movie-input-id').val(currentMovieId)
+//   const currentMovieArray = store.movies.filter((movie) => {
+//     return String(movie.id) === currentMovieId
+//   })
+//   const currentMovie = currentMovieArray[0]
 
 // UPDATE FIELD VALS
-  $('#update-movie-input-title').val(currentMovie.title)
-  $('#update-movie-input-director').val(currentMovie.director)
-  $('#update-movie-input-comment').val(currentMovie.comment)
+  // $('#update-movie-input-title').val(currentMovie.title)
+  // $('#update-movie-input-director').val(currentMovie.director)
+  // $('#update-movie-input-comment').val(currentMovie.comment)
 
 // SHOW / HIDE
-  $('.update-field').show()
-  $('#update-id-div').hide()
+//   $('.update-field').show()
+//   $('#update-id-div').hide()
+//
+//   $('#update-movie-input-forms').on('submit', updateMovie)
+//   $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
+// }
 
-  $('#update-movie-input-forms').on('submit', updateMovie)
-  $('#cancel-update-submit-button').on('click', () => { $('.update-field').hide() })
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
+
+
+const getMoviePostsSuccess = () => {
+  // userAuthUi.userMessage('Loaded comments')
 }
 
 const getMoviePostsFailure = (error) => {
@@ -137,6 +155,12 @@ const getMoviePostsFailure = (error) => {
   console.error(error)
 }
 
+//
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions |
+// this function gets movies from memory and stores both user movies and all movies
+//
 const showMoviePage = (event) => {
   event.preventDefault()
   const currentMovieId = $(event.target).attr('data-id')
@@ -164,15 +188,24 @@ const showMoviePage = (event) => {
         movie: currentMovie,
         comments: store.currentMoviePosts
       })
+      // refresh the content of moviePageView and moviePosts
       $('#content').empty()
       $('#content').append(moviePageHTML)
+      // add clicks for edit and delete Movie-- only owner of movie sees buttons
+      $('.edit-movie-button').click('')
+      $('.delete-movie-button').click('')
+      // add clicks for edit and delete Comment (moviePost)-- only owner of movie sees buttons
+      $('.edit-comment-button').click('')
+      $('.delete-comment-button').click('')
     })
+    .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)
 }
 
+//
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
 // [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
-
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
 const deleteMovieSuccess = () => {
   userAuthUi.userMessage('Movie Deleted!')
   refreshMoviesData()
@@ -195,9 +228,10 @@ const deleteMovie = (event) => {
     .catch(deleteMovieFailure)
 }
 
-// [CREATE] NEW MOVIE
-// [CREATE] NEW MOVIE
-
+//
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
+// [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
 const newMovieSuccess = () => {
   userAuthUi.userMessage('Added New Movie!')
   refreshMoviesData()
@@ -216,6 +250,7 @@ module.exports = {
   getMoviesSuccess,
   getMoviesFailure,
   updateMovie,
+  deleteMovie,
   getUserMoviesSuccess,
   getUserMoviesFailure
 }
