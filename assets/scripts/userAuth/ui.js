@@ -30,6 +30,8 @@ const signInSuccess = (data) => {
   $('#sign-up')[0].reset()
   $('#sign-in')[0].reset()
   $('#sign-in-modal').modal('hide')
+  $('#create-movie-modal').modal('hide')
+  $('#edit-movie-modal').modal('hide')
 }
 
 const signInFailure = (error) => {

@@ -1,24 +1,22 @@
 'use strict'
 
 const store = require('../store.js')
-const showMoviesTemplate = require('../templates/moviesTable.handlebars')
+// const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
 const moviePostsApi = require('../moviePosts/api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
 const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
+const createMovieFieldsView = require('../templates/createMovieFields.handlebars')
 
-
-const onShowCreateMovieModal = function (event) {
+const onShowCreateMovieFields = function (event) {
   event.preventDefault()
-  $('#create-movie-modal').modal('show')
-}
-
-const onShowEditMovieModal = function (event) {
-  event.preventDefault()
-  $('#edit-movie-id-input').val(currentPostId)
-  $('#edit-movie-modal').modal('show')
+  const createMovieFieldsHTML = createMovieFieldsView()
+  $('#content').empty()
+  $('#content').append(createMovieFieldsHTML)
+  $('submit-create-new-movie-button').on('click', )
+  // $('#create-movie-modal').modal('show')
 }
 
 // HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
@@ -39,7 +37,7 @@ const refreshAllMovies = () => {
   $('#content').empty()
   $('#content').append(allMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
-  $('.view-create-movie-modal-button').on('click', onShowCreateMovieModal)
+  $('.view-create-movie-modal-button').on('click', onShowCreateMovieFields)
 }
 
 // [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] | [REFRESH USER MOVIES] |
@@ -48,7 +46,7 @@ const refreshUserMovies = () => {
   $('#content').empty()
   $('#content').append(userMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
-  $('.view-create-movie-modal-button').on('click', onShowCreateMovieModal)
+  $('.view-create-movie-modal-button').on('click', onShowCreateMovieFields)
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
@@ -59,8 +57,10 @@ const refreshUserMovies = () => {
 
 const onOpenEditMovieFields = () => {
   event.preventDefault()
+
+  // $('#edit-movie-modal').modal('show')
   const currentMovieId = $(event.target).attr('data-id')
-  $('#edit-movie-input-id').val(currentMovieId)
+  $('#edit-movie-id-input').val(currentMovieId)
   const currentMovieArray = store.movies.filter((movie) => {
     return String(movie.id) === currentMovieId
   })
@@ -84,7 +84,6 @@ const onOpenEditMovieFields = () => {
 
   $('#edit-movie-input-img_url').val(currentMovie.img_url)
   // SHOW EDIT MOVIE MODAL
-  $('#edit-movie-modal').modal('show')
 }
 
 // SHOW / HIDE
@@ -141,9 +140,9 @@ const getUserMoviesFailure = (error) => {
 }
 
 //
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
-// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE |
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
+// [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
 const updateMovieSuccess = () => {
   userAuthUi.userMessage('Movie Updated Successfully!')
   refreshMoviesData()

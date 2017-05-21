@@ -35,10 +35,10 @@ const onGetUserMovies = function (event) {
     .catch(ui.getUserMoviesFailure)
 }
 
-const onHideMovies = function (event) {
-  event.preventDefault()
-  $('#content').empty()
-}
+// const onHideMovies = function (event) {
+//   event.preventDefault()
+//   $('#content').empty()
+// }
 
 const onShowCreateMovieFields = function (event) {
   event.preventDefault()
@@ -62,7 +62,7 @@ const onGoHome = function (event) {
 const addHandlers = () => {
   $('#show-create-movie-fields').on('click', onShowCreateMovieFields)
   $('#hide-create-movie-fields').on('click', onHideCreateMovieFields)
-  $('#hide-movies').on('click', onHideMovies)
+  // $('#hide-movies').on('click', onHideMovies)
   $('#all-movies-button').on('click', onGetMovies)
   $('#my-movies-button').on('click', onGetUserMovies)
   $('#go-home-button').on('click', onGoHome)
