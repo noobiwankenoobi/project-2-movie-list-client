@@ -25,12 +25,13 @@
 <!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
 <!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
 
-    <body class="container-fluid" style="padding-top: 50px;">
+<body>
+   <!-- style= class="container-fluid" "padding-top: 50px;" -->
 
 <!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
 <!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
 
-  <nav class="navbar navbar-fixed-top navbar-default">
+  <nav class="navbar navbar-static-top navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">MovieDiscuss</a>
@@ -68,57 +69,7 @@
 
 <br><br><br><br>
 
-<!-- [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | -->
-<!-- [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | -->
 
-        <div id="user-messages" class="col-xs-12 user-messages"></div>
-
-
-<!-- [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | -->
-<!-- [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | -->
-<!-- [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | -->
-<!-- [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | [CONTENT SECTION] Begins Here | -->
-
-
-    <!-- Button Group for Showing and Hiding all [movie posts] -->
-    <!-- Button Group for Showing and Hiding all [movie posts] -->
-    <div class="btn-group col-xs-6">
-      <h3 class="signed-in-view">Comments on Movies</h3>
-      <div class="signed-in-view btn-group" style="margin-top: 30px;">
-        <button id="get-movie-posts" class="btn btn-primary" data-id="get-movie-posts">Show Movie Comments Table</button>
-        <button id="hide-movie-posts" class="btn btn-danger" data-id="get-movie-posts">Hide Movie Comments Table</button>
-      </div>
-    </div>
-
-    <!-- Button Group for Showing and Hiding all [movies] -->
-    <!-- Button Group for Showing and Hiding all [movies] -->
-    <div class="btn-group col-xs-6">
-      <h3 class="signed-in-view">Movies</h3>
-      <div class="signed-in-view btn-group" style="margin-top: 30px;">
-        <button id="get-movies" class="btn btn-primary" data-id="get-movies">Show Movies Table</button>
-        <button id="hide-movies" class="btn btn-danger" data-id="get-movies">Hide Movies Table</button>
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <!-- Button Group for Showing and Hiding all [movie post fields] -->
-    <!-- Button Group for Showing and Hiding all [movie post fields] -->
-    <div class="btn-group col-xs-6">
-      <div class="signed-in-view btn-group" style="margin-top: 30px;">
-        <button id="show-create-movie-post-fields" class="btn btn-primary" data-id="create-movie-post-fields">Create Movie Comment</button>
-        <button id="hide-create-movie-post-fields" class="btn btn-danger" data-id="create-movie-fields">Hide Movie Comment Field</button>
-      </div>
-    </div>
-
-    <!-- Button Group for Showing and Hiding all [movie fields] -->
-    <!-- Button Group for Showing and Hiding all [movie fields] -->
-    <div class="btn-group col-xs-6">
-      <div class="signed-in-view btn-group" style="margin-top: 30px;">
-        <button id="show-create-movie-fields" class="btn btn-primary" data-id="create-movie-fields">Create Movie</button>
-        <button id="hide-create-movie-fields" class="btn btn-danger" data-id="create-movie-fields">Hide Create Movie Fields</button>
-      </div>
-    </div>
 
 <br><br><br><br>
 
@@ -136,8 +87,12 @@
 <!-- [TABLE] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
 <!-- [TABLE] HANDLEBARS CONTENT INSERTED HERE | [TABLE] HANDLEBARS CONTENT INSERTED HERE | -->
 
-      <div id="content"></div>
+      <div id="content" class="container"></div>
 
+<!-- [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | -->
+<!-- [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | [USER MESSAGES] HERE | -->
+
+      <div id="user-messages" class="col-xs-12 user-messages"></div>
 
 
 <!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
@@ -165,7 +120,7 @@
 
                 <div class="form-group">
                   <label for="email">Email address:</label>
-                  <input type="email" name="credentials[email]" class="form-control" required>
+                  <input type="email" name="credentials[email]" class="form-control" autofocus required>
                 </div>
                 <br>
                 <div class="form-group">
@@ -209,7 +164,7 @@
 
                 <div class="form-group">
                   <label for="email">Email Address:</label>
-                  <input type="email" name="credentials[email]" class="form-control" required>
+                  <input type="email" name="credentials[email]" class="form-control" autofocus required>
                 </div>
                 <div class="form-group">
                   <label for="pwd">Password:</label>

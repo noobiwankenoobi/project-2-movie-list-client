@@ -48,8 +48,9 @@ const onHideCreateMovieFields = function (event) {
 const addHandlers = () => {
   $('#show-create-movie-fields').on('click', onShowCreateMovieFields)
   $('#hide-create-movie-fields').on('click', onHideCreateMovieFields)
-  $('#get-movies').on('click', onGetMovies)
+  // $('#get-movies').on('click', onGetMovies)
   $('#hide-movies').on('click', onHideMovies)
+  $('#all-movies-button').on('click', onGetMovies)
 }
 
 module.exports = {

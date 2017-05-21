@@ -1,14 +1,19 @@
-<div class="constainer-fluid all-movies-page signed-in-view">
+<div class="container all-movies-page signed-in-view">
 
 {{#each movies as |movie|}}
-  <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="{{movie.img_url}}" alt="Movie Poster">
-    <div class="card-block">
+  <div class="card col-xs-3" style="padding: 20px">
+    <img class="card-img-top img-thumbnail" src="{{movie.img_url}}" alt="Movie Poster" style="padding: 15px">
+    <div class="card-block" style="padding: 10px, min-height: 200px">
       <h4 class="card-title movie-card-title">{{movie.title}}</h4>
       <p class="card-text">Director: {{movie.director}}</p>
-      <a data-id="{{movie.id}}" href="#" class="btn btn-primary view-movie-page-button">View Movie</a>
+      <button data-id="{{movie.id}}" class="btn btn-primary view-movie-page-button">View Movie</button>
     </div>
   </div>
 {{/each}}
 
+
 </div>
+
+<!-- style="width: 20rem;" -->
+
+<!-- <div class="row row-eq-height"> for line 4 -->

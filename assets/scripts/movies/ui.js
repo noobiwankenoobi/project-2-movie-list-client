@@ -1,37 +1,38 @@
 'use strict'
 
 const store = require('../store.js')
-const showMoviesTemplate = require('../templates/moviesTable.handlebars')
+// const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
+const allMoviesPage = require('../templates/allMoviesPage.handlebars')
+const moviePageView = require('../templates/moviePageView.handlebars')
 
-// [GET ALL] MOVIES
-// [GET ALL] MOVIES
+// HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
+// HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
+// HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
+// HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS | HELPER FUNCTIONS |
 
-const getMoviesSuccess = (data) => {
-  userAuthUi.userMessage('Found Some Movies!')
-  store.movies = data.movies
-  refreshMoviesTable()
-}
-
-const getMoviesSuccessQuiet = (data) => {
-  store.movies = data.movies
-  refreshMoviesTable()
-}
-
-const getMoviesFailure = (error) => {
-  userAuthUi.userMessage('Failed to get Movies!')
-  console.error(error)
-}
-
-// HELPER FUNCTIONS FOR REFRESHING
-// HELPER FUNCTIONS FOR REFRESHING
-
+// [REFRESH MOVIES DATA] |
 const refreshMoviesData = () => {
   api.getMovies()
     .then(getMoviesSuccessQuiet)
     .catch(getMoviesFailure)
+}
+
+// [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] | [REFRESH ALL MOVIES] |
+const refreshAllMovies = () => {
+  const allMoviesHTML = allMoviesPage({movies: store.movies})
+  $('#content').empty()
+  $('#content').append(allMoviesHTML)
+  $('.edit-movie-button').on('click', showUpdateFields)
+  $('.delete-movie-button').on('click', deleteMovie)
+  $('.view-movie-page-button').on('click', showMoviePage)
+}
+
+// [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
+const refreshMoviePage = () => {
+
 }
 
 const clearUpdateInputFields = () => {
@@ -39,6 +40,25 @@ const clearUpdateInputFields = () => {
   // $('#update-movie-input-movie-title').val('')
   // $('#update-movie-input-director').val('')
   // $('#update-movie-input-comment').val('')
+}
+
+// [GET ALL] MOVIES
+// [GET ALL] MOVIES
+
+const getMoviesSuccess = (data) => {
+  userAuthUi.userMessage('Found Some Movies!')
+  store.movies = data.movies
+  refreshAllMovies()
+}
+
+const getMoviesSuccessQuiet = (data) => {
+  store.movies = data.movies
+  refreshAllMovies()
+}
+
+const getMoviesFailure = (error) => {
+  userAuthUi.userMessage('Failed to get Movies!')
+  console.error(error)
 }
 
 // [UPDATE] MOVIE
@@ -59,7 +79,7 @@ const updateMovieFailure = (error) => {
 const updateMovie = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  refreshMoviesTable()
+  refreshAllMovies()
   if (data.movie.title.trim()) {
     api.updateMovie(data)
       .then(updateMovieSuccess)
@@ -92,23 +112,14 @@ const showUpdateFields = (event) => {
 }
 
 const showMoviePage = (event) => {
-
-}
-
-// REFRESH TABLE
-// REFRESH TABLE
-
-const refreshMoviesTable = () => {
-  const showMoviesHtml = showMoviesTemplate({movies: store.movies})
+  event.preventDefault()
+  const moviePageHTML = moviePageView({movies: store.movies})
   $('#content').empty()
-  $('#content').append(showMoviesHtml)
-  $('.edit-movie-button').on('click', showUpdateFields)
-  $('.delete-movie-button').on('click', deleteMovie)
-  $('.movie-page-button').on('click', showMoviePage)
+  $('#content').append(moviePageHTML)
 }
 
-// [DELETE] MOVIE
-// [DELETE] MOVIE
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
+// [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE | [DELETE] MOVIE
 
 const deleteMovieSuccess = () => {
   userAuthUi.userMessage('Movie Deleted!')
@@ -126,7 +137,7 @@ const deleteMovie = (event) => {
   store.movies = store.movies.filter((movie) => {
     return String(movie.id) !== String(movieId)
   })
-  refreshMoviesTable()
+  refreshAllMovies()
   api.deleteMovie(movieId)
     .then(deleteMovieSuccess)
     .catch(deleteMovieFailure)
