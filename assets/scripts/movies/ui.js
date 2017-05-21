@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
-// const showMoviesTemplate = require('../templates/moviesTable.handlebars')
+const showMoviesTemplate = require('../templates/moviesTable.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
@@ -31,9 +31,9 @@ const refreshAllMovies = () => {
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
-const refreshMoviePage = () => {
-
-}
+// const refreshMoviePage = () => {
+//
+// }
 
 const clearUpdateInputFields = () => {
   // $('#update-movie-input-id').val('')
@@ -113,7 +113,12 @@ const showUpdateFields = (event) => {
 
 const showMoviePage = (event) => {
   event.preventDefault()
-  const moviePageHTML = moviePageView({movies: store.movies})
+  const currentMovieId = $(event.target).attr('data-id')
+  const currentMovieArray = store.movies.filter((movie) => {
+    return String(movie.id) === currentMovieId
+  })
+  const currentMovie = currentMovieArray[0]
+  const moviePageHTML = moviePageView({movie: currentMovie})
   $('#content').empty()
   $('#content').append(moviePageHTML)
 }
