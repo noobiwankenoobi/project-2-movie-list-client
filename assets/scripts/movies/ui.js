@@ -77,7 +77,7 @@ const refreshUserMovies = () => {
   $('#content').empty()
   $('#content').append(userMoviesHTML)
   $('.view-movie-page-button').on('click', showMoviePage)
-  // $('.view-create-movie-fields-button').on('click', onShowCreateMovieFields)
+  $('.view-create-movie-fields-button').on('click', onShowCreateMovieFields)
 }
 
 // [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] | [REFRESH MOVIE PAGE] |
@@ -209,7 +209,6 @@ const getUserMoviesSuccess = (data) => {
     return store.user.id === movie.user_id
   })
   refreshUserMovies()
-  $('#show-create-movie-fields').on('click', onShowCreateMovieFields)
 }
 
 const getUserMoviesFailure = (error) => {
