@@ -10,7 +10,7 @@ const moviesPage = require('../templates/moviesPage.handlebars')
 const moviePageView = require('../templates/moviePageView.handlebars')
 const createMovieFieldsView = require('../templates/createMovieFields.handlebars')
 const editMovieFieldsView = require('../templates/updateMovieFields.handlebars')
-const moviePostEvents = require('../moviePosts/events')
+// const moviePostEvents = require('../moviePosts/events')
 
 //
 // [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE | [CREATE] NEW MOVIE |
@@ -286,17 +286,43 @@ const getMoviePostsFailure = (error) => {
   console.error(error)
 }
 
-// const onNewComment = () => {
-//   event.preventDefault()
-//   const data = getFormFields(event.target)
-//   if (data.movie_post.comment.trim()) {
-//     moviePostApi.newMoviePost(data)
-//       .then(ui.newMoviePostSuccess)
-//       .catch(ui.newMoviePostFailure)
-//
-//   moviePostEvents.onNewMoviePost
-// }
+const deleteMoviePostFailure = (error) => {
+  userAuthUi.userMessage('Failed to Delete Movie Post!')
+  console.error(error)
+}
 
+const onDeleteMoviePost = (event) => {
+  event.preventDefault()
+  const moviePostId = $(event.target).attr('data-id')
+  moviePostsApi.deleteMoviePost(moviePostId)
+    .then(() => {
+      userAuthUi.userMessage('Movie Post Deleted!')
+      renderMoviePage(String(moviePostId))
+    })
+    .catch(deleteMoviePostFailure)
+}
+
+const newMoviePostFailure = (error) => {
+  userAuthUi.userMessage('Failed to add New Movie Post!')
+  console.error(error)
+}
+
+const newMoviePostSuccess = (data) => {
+  renderMoviePage(String(data.movie_post.movie_id))
+  userAuthUi.userMessage('Added New Movie Post!')
+}
+
+const createMoviePost = (event) => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  if (data.movie_post.comment.trim()) {
+    moviePostsApi.newMoviePost(data)
+      .then(newMoviePostSuccess)
+      .catch(newMoviePostFailure)
+  } else {
+    userAuthUi.userMessage('You Must Enter a Comment')
+  }
+}
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
@@ -349,10 +375,12 @@ const renderMoviePage = (currentMovieId) => {
       $('.edit-movie-button').click(onOpenEditMovieFields)
       $('.delete-movie-button').click(onDeleteMovie)
       // add clicks for edit and delete Comment (moviePost)-- only owner of movie sees buttons
-      $('.edit-comment-button').click('')
-      $('.delete-comment-button').click('')
+      // $('.edit-comment-button').click('')
+      $('.delete-comment-button').click(onDeleteMoviePost)
       // submit comment click handler
-      $('.submit-comment-on-movie').on('submit', )
+      $('#submit-comment-on-movie').on('submit', createMoviePost)
+      $('#movie-id-input').val(currentMovie.id)
+      $('#user-id-input').val(store.user.id)
     })
     .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)
@@ -366,5 +394,6 @@ module.exports = {
   onUpdateMovie,
   onDeleteMovie,
   getUserMoviesSuccess,
-  getUserMoviesFailure
+  getUserMoviesFailure,
+  renderMoviePage
 }

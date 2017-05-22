@@ -9,9 +9,8 @@ const userAuthUi = require('../userAuth/ui.js')
 
 // Needs finishing
 const onNewMoviePost = function (event) {
+  console.log(event.target)
   event.preventDefault()
-  // const currentMovieId = $(event.target).attr('data-id')
-  // const commentingOnMovie = currentMovieId
   const data = getFormFields(event.target)
   if (data.movie_post.comment.trim()) {
     api.newMoviePost(data)
@@ -35,5 +34,7 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onNewMoviePost,
+  onGetMoviePosts
 }

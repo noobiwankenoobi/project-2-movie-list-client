@@ -27,16 +27,18 @@
 
   <div class="container enter-comment-on-movie" style="margin-top: 40px;">
   <h4>Comment directly on the film or respond to someone in the comment section</h4>
-  <form class="submit-comment-on-movie">
-    <div class="form-group">
-      <label for="comment">Comment on: | {{movie.title}} |</label>
+  <br>
 
-      <div class="form-group">
+  <form id="submit-comment-on-movie" class="submit-comment-on-movie">
+    <div class="form-group">
+      <label for="comment">Comment on {{movie.title}}</label>
+
+      <div class="form-group" hidden>
         <label for="movie-title">Movie Id</label>
         <input id="movie-id-input" type="number" name="movie_post[movie_id]" class="form-control new-movie-post-input">
       </div>
       <br>
-      <div class="form-group">
+      <div class="form-group" hidden>
         <label for="director">User Id</label>
         <input id="user-id-input" type="number" name="movie_post[user_id]" class="form-control new-movie-post-input">
       </div>
@@ -45,11 +47,11 @@
       <textarea class="form-control" name="movie_post[comment]" rows="5" id="comment"></textarea>
     </div>
     <div>
-    <button type="submit" data-id="{{movie.id}}" class="btn btn-success submit-comment-on-movie">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
   </div>
   </form>
-  </div>
 
+  </div>
   <br>
 
   <div class="comment-section" style="margin-top: 50px;">

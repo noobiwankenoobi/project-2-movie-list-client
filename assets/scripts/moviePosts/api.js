@@ -25,6 +25,7 @@ const getMoviePosts = () => {
 }
 
 const deleteMoviePost = (moviePostId) => {
+  console.log(moviePostId)
   return $.ajax({
     method: 'DELETE',
     url: config.apiOrigin + '/movie_posts/' + moviePostId,

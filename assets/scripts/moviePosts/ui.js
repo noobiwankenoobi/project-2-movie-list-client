@@ -5,6 +5,7 @@ const showMoviePostsTemplate = require('../templates/moviePosts.handlebars')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const userAuthUi = require('../userAuth/ui.js')
+const moviesUi = require('../movies/ui')
 
 // [GET ALL] MOVIES
 // [GET ALL] MOVIES
@@ -129,11 +130,9 @@ const deleteMoviePost = (event) => {
 // [CREATE] NEW MOVIE POST
 // [CREATE] NEW MOVIE POST
 
-const newMoviePostSuccess = () => {
+const newMoviePostSuccess = (data) => {
+  moviesUi.renderMoviePage(String(data.movie_post.movie_id))
   userAuthUi.userMessage('Added New Movie Post!')
-  refreshMoviePostsData()
-  $('#create-new-movie-post-input-forms').val('')
-  $('#form-fields-handlebars-insert').empty()
 }
 
 const newMoviePostFailure = (error) => {
