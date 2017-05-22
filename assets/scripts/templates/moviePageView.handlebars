@@ -26,25 +26,25 @@
   <br>
 
   <div class="container enter-comment-on-movie" style="margin-top: 40px;">
-  <h4>Comment directly on the film or respond to someone in the comment section</h4>
-  <br>
+  <h3>Comment directly on {{movie.title}} or respond to someone in the comment section</h3>
 
-  <form id="submit-comment-on-movie" class="submit-comment-on-movie">
+  <form id="submit-comment-on-movie" class="submit-comment-on-movie col-xs-8">
     <div class="form-group">
-      <label for="comment">Comment on {{movie.title}}</label>
 
       <div class="form-group" hidden>
-        <label for="movie-title">Movie Id</label>
         <input id="movie-id-input" type="number" name="movie_post[movie_id]" class="form-control new-movie-post-input">
       </div>
       <br>
       <div class="form-group" hidden>
-        <label for="director">User Id</label>
         <input id="user-id-input" type="number" name="movie_post[user_id]" class="form-control new-movie-post-input">
       </div>
       <br>
-
-      <textarea class="form-control" name="movie_post[comment]" rows="5" id="comment"></textarea>
+      <div class="form-group">
+        <!-- <label for="parent">Parent Movie Post Id (optional)</label> -->
+        <input id="parent-movie-post-id-input" type="number" name="movie_post[parent_movie_post_id]" class="form-control col-xs-3 new-movie-post-input" placeholder="Parent movie id optional">
+      </div>
+      <br><br>
+      <textarea class="form-control" name="movie_post[comment]" rows="5" id="comment" placeholder="Comment"></textarea>
     </div>
     <div>
     <button type="submit" class="btn btn-success">Submit</button>
