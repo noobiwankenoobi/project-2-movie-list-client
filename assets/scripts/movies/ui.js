@@ -94,8 +94,10 @@ const cancelCreateMovie = () => {
 }
 
 const cancelUpdateMovie = () => {
+  const currentMovieId = String($('#edit-movie-id-input').val())
   clearEditInputFields()
   $('#content').empty()
+  renderMoviePage(currentMovieId)
 }
 
 const onOpenEditMovieFields = () => {
@@ -128,6 +130,7 @@ const onOpenEditMovieFields = () => {
   $('#edit-movie-composer-input').val(currentMovie.music)
   $('#edit-movie-composer-imdb-url-input').val(currentMovie.music_imdb_url)
 
+  $('#edit-movie-title-rotten-url-input').val(currentMovie.title_rotten_url)
   $('#edit-movie-image-url-input').val(currentMovie.img_url)
   // SHOW EDIT MOVIE MODAL
   $('.edit-movie_params').on('submit', onUpdateMovie)
@@ -150,6 +153,8 @@ const clearCreateInputFields = () => {
   $('#edit-movie-input-music').val('')
   $('#edit-movie-input-music-imdb-url').val('')
 
+  $('#edit-movie-title-rotten-url-input').val('')
+
   $('#edit-movie-input-img_url').val('')
 }
 
@@ -170,6 +175,8 @@ const clearEditInputFields = () => {
 
   $('#edit-movie-input-music').val('')
   $('#edit-movie-input-music-imdb-url').val('')
+
+  $('#edit-movie-title-rotten-url-input').val('')
 
   $('#edit-movie-input-img_url').val('')
 }
@@ -279,7 +286,12 @@ const getMoviePostsFailure = (error) => {
   console.error(error)
 }
 
-//
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
+// [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
@@ -291,6 +303,10 @@ const getMoviePostsFailure = (error) => {
 const showMoviePage = (event) => {
   event.preventDefault()
   const currentMovieId = $(event.target).attr('data-id')
+  renderMoviePage(currentMovieId)
+}
+
+const renderMoviePage = (currentMovieId) => {
   const currentMovieArray = store.movies.filter((movie) => {
     return String(movie.id) === currentMovieId
   })

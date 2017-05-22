@@ -46,7 +46,7 @@ const clearUpdateInputFields = () => {
 
 const updateMoviePostSuccess = () => {
   userAuthUi.userMessage('Movie Post Updated Successfully!')
-  // refreshMoviePostsData()
+  refreshMoviePostsData()
   clearUpdateInputFields()
   $('.update-field').hide()
 }
