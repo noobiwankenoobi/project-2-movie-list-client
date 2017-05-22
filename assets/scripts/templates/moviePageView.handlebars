@@ -16,7 +16,7 @@
     <h4>Music: <a href="{{movie.music_imdb_url}}">{{movie.music}}</a></h4>
     <h4>Rotten Tomatoes: <a href="{{movie.title_rotten_url}}">Reviews</a></h4>
     {{#if movie.isUserMovie}}
-      <div class="movie-management-buttons">
+      <div class="movie-management-buttons" style="margin-top: 15px;">
         <button data-id="{{movie.id}}" class="btn btn-warning edit-movie-button">Edit Movie</button>
         <button data-id="{{movie.id}}" class="btn btn-danger delete-movie-button">Delete Movie</button>
       </div>
@@ -25,22 +25,34 @@
 
   <br>
 
-  <div class="container enter-comment-on-movie">
+  <div class="container enter-comment-on-movie" style="margin-top: 40px;">
   <h4>Comment directly on the film or respond to someone in the comment section</h4>
   <form class="submit-comment-on-movie">
     <div class="form-group">
       <label for="comment">Comment on: | {{movie.title}} |</label>
-      <textarea class="form-control" rows="5" id="comment"></textarea>
+
+      <div class="form-group">
+        <label for="movie-title">Movie Id</label>
+        <input id="movie-id-input" type="number" name="movie_post[movie_id]" class="form-control new-movie-post-input">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="director">User Id</label>
+        <input id="user-id-input" type="number" name="movie_post[user_id]" class="form-control new-movie-post-input">
+      </div>
+      <br>
+
+      <textarea class="form-control" name="movie_post[comment]" rows="5" id="comment"></textarea>
     </div>
     <div>
-    <button data-id="{{movie.id}}" type="submit" class="btn btn-success submit-comment-on-movie">Submit</button>
+    <button type="submit" data-id="{{movie.id}}" class="btn btn-success submit-comment-on-movie">Submit</button>
   </div>
   </form>
   </div>
 
   <br>
 
-  <div class="comment-section">
+  <div class="comment-section" style="margin-top: 50px;">
     <h3>All Comments</h3>
     <br>
     {{#each comments as |comment|}}

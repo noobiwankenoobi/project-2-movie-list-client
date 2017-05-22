@@ -30,10 +30,7 @@ const newMovieFailure = (error) => {
 
 const onNewMovie = function (event) {
   event.preventDefault()
-  console.log('EVENT DOT TARGET IS: ', event.target)
   const data = getFormFields(event.target)
-  console.log('EVENT DOT TARGET IS 2: ', event.target)
-  console.log(data)
   // if (data.movie.title.trim()) {
   api.newMovie(data)
     .then(newMovieSuccess)
@@ -133,7 +130,7 @@ const onOpenEditMovieFields = () => {
   $('#edit-movie-title-rotten-url-input').val(currentMovie.title_rotten_url)
   $('#edit-movie-image-url-input').val(currentMovie.img_url)
   // SHOW EDIT MOVIE MODAL
-  $('.edit-movie_params').on('submit', onUpdateMovie)
+  $('#edit-movie_params').on('submit', onUpdateMovie)
   $('.cancel-edit-movie-button').on('click', cancelUpdateMovie)
 }
 
@@ -224,12 +221,16 @@ const getUserMoviesFailure = (error) => {
 // [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
 // [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
 // [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE | [UPDATE] MOVIE
-const updateMovieSuccess = () => {
-  userAuthUi.userMessage('Movie Updated Successfully!')
-  refreshMoviesData()
+const updateMovieSuccess = (data) => {
   clearEditInputFields()
-  $('#content').empty()
-  showMoviePage()
+  userAuthUi.userMessage('Movie Updated Successfully!')
+  api.getMovies()
+    .then((moviesData) => {
+      store.movies = moviesData.movies
+      $('#content').empty()
+      renderMoviePage(String(data.movie.id))
+    })
+    .catch(getMoviesFailure)
 }
 
 const updateMovieFailure = (error) => {
@@ -240,7 +241,6 @@ const updateMovieFailure = (error) => {
 const onUpdateMovie = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  refreshAllMovies()
   api.updateMovie(data)
     .then(updateMovieSuccess)
     .catch(updateMovieFailure)
@@ -285,6 +285,17 @@ const getMoviePostsFailure = (error) => {
   userAuthUi.userMessage('Failed to get Movie Posts!')
   console.error(error)
 }
+
+// const onNewComment = () => {
+//   event.preventDefault()
+//   const data = getFormFields(event.target)
+//   if (data.movie_post.comment.trim()) {
+//     moviePostApi.newMoviePost(data)
+//       .then(ui.newMoviePostSuccess)
+//       .catch(ui.newMoviePostFailure)
+//
+//   moviePostEvents.onNewMoviePost
+// }
 
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
 // [SHOW MOVIE PAGE] Mother of all Functions | [SHOW MOVIE PAGE] Mother of all Functions
@@ -341,7 +352,7 @@ const renderMoviePage = (currentMovieId) => {
       $('.edit-comment-button').click('')
       $('.delete-comment-button').click('')
       // submit comment click handler
-      $('.submit-comment-on-movie').on('submit', moviePostEvents.onNewMoviePost)
+      $('.submit-comment-on-movie').on('submit', )
     })
     .then(getMoviePostsSuccess)
     .catch(getMoviePostsFailure)
