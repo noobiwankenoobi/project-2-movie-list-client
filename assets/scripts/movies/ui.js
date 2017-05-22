@@ -297,7 +297,11 @@ const onDeleteMoviePost = (event) => {
   moviePostsApi.deleteMoviePost(moviePostId)
     .then(() => {
       userAuthUi.userMessage('Movie Post Deleted!')
-      renderMoviePage(String(moviePostId))
+      moviePostsApi.getMoviePosts()
+        .then((data) => {
+          store.moviePosts = data.movie_posts
+          renderMoviePage(String(moviePostId))
+        })
     })
     .catch(deleteMoviePostFailure)
 }

@@ -4,9 +4,9 @@
 <div class="container all-movies-page signed-in-view">
 
 {{#each movies as |movie|}}
-  <div class="card col-xs-3" style="padding: 20px">
+  <div class="card col-xs-3" style="padding: 20px; height: 200px;">
     <img class="card-img-top img-thumbnail" src="{{movie.img_url}}" alt="Movie Poster" style="padding: 15px">
-    <div class="card-block" style="padding: 10px, min-height: 200px">
+    <div class="card-block" style="padding: 10px">
       <h4 class="card-title movie-card-title">{{movie.title}}</h4>
       <p class="card-text">Director: {{movie.director}}</p>
       <button data-id="{{movie.id}}" class="btn btn-primary view-movie-page-button">View Movie</button>
