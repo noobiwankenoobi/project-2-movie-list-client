@@ -293,13 +293,18 @@ const deleteMoviePostFailure = (error) => {
 const onDeleteMoviePost = (event) => {
   event.preventDefault()
   const moviePostId = $(event.target).attr('data-id')
+  const currentMoviePosts = store.moviePosts.filter((moviePost) => {
+    return moviePostId === String(moviePost.id)
+  })
+  const currentMoviePost = currentMoviePosts[0]
+  const movieId = currentMoviePost.movie_id
   moviePostsApi.deleteMoviePost(moviePostId)
     .then(() => {
       userAuthUi.userMessage('Movie Post Deleted!')
       moviePostsApi.getMoviePosts()
         .then((data) => {
           store.moviePosts = data.movie_posts
-          renderMoviePage(String(moviePostId))
+          renderMoviePage(String(movieId))
         })
     })
     .catch(deleteMoviePostFailure)
