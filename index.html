@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Movie Discuss App</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+
+<!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
+<!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
+<!-- [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | [BODY] BEGINS HERE | -->
+
+<body>
+   <!-- style= class="container-fluid" "padding-top: 50px;" -->
+
+<!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
+<!-- [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | [NAV BAR] SECTION | -->
+
+  <nav class="navbar navbar-static-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a id="go-home-button" class="navbar-brand" href="#">MovieDiscuss</a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li id="all-movies-button" class="signed-in-view"><a href="#">All Movies</a></li>
+        <li id="my-movies-button" class="signed-in-view"><a href="#">My Movies</a></li>
+        <!-- <li id="my-comments-button" class="signed-in-view"><a href="#">My Comments</a></li> -->
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li id="sign-up-show-modal-button" class="signed-out-view"><a href="#">Sign Up</a></li>
+        <li id="sign-in-show-modal-button" class="signed-out-view"><a href="#">Sign In</a></li>
+        <li id="change-password-show-modal-button" class="signed-in-view"><a href="#">Change Password</a></li>
+        <li id="sign-out-button" class="signed-in-view"><a href="#">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
+<!-- [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION | [LANDING HEADER] SECTION |-->
+
+        <div id="header-div" class="header-div container col-xs-12 signed-in-view">
+          <h1 style="text-align: center;">Welcome to my Movie Discussion App!</h1>
+          <h4 style="text-align: center;">This is a place where people can create movies and discuss them with others</h4>
+        </div>
+
+        <div class="container signed-out-view">
+          <div class="jumbotron">
+              <h1>Welcome to MovieDiscuss</h1>
+              <p>This is a place where people can create movies and discuss them with others</p>
+          </div>
+          <!-- <div>
+              <h4> Please
+          </div> -->
+        </div>
+
+<br><br><br><br>
+
+
+<!-- [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] -->
+<!-- [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] -->
+<!-- [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] CONTENT GETS INSERTED HERE | [HANDLEBARS] -->
+
+<!-- [CONTENT HANDLEBARS NSERTED HERE | [CONTENT HANDLEBARS NSERTED HERE | [CONTENT HANDLEBARS NSERTED HERE | -->
+<!-- [CONTENT HANDLEBARS NSERTED HERE | [CONTENT HANDLEBARS NSERTED HERE | [CONTENT HANDLEBARS NSERTED HERE | -->
+
+
+      <div class="col-xs-12" style="margin: 10px; text-align: center; height: 25px;">
+        <h4><span id="user-messages" style="text-align: center;"></span></h4>
+      </div>
+
+      <div id="content" class="container signed-in-view"></div>
+
+
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+<!-- [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | [MODALS] INSERTED HERE | -->
+
+
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+<!-- [FORM FIELDS] MODALS HERE | [FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE |[FORM FIELDS] MODALS HERE -->
+
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+<!-- Create Movie Modal -->
+
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+<!-- [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | [USER AUTH] MODALS HERE | -->
+
+      <!-- Sign Up Modal -->
+      <!-- Sign Up Modal -->
+      <div id="sign-up-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Create Account</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="sign-up" class="form-inline signed-out-view">
+
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" name="credentials[email]" class="form-control" autofocus required>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" name="credentials[password]" class="form-control" required>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="pwd">Password Confirmation:</label>
+                  <input type="password" name="credentials[password_confirmation]" class="form-control" required>
+                </div>
+                <br>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Create</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sign In Modal -->
+      <!-- Sign In Modal -->
+      <div id="sign-in-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Login</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="sign-in" class="form-inline signed-out-view">
+
+                <div class="form-group">
+                  <label for="email">Email Address:</label>
+                  <input type="email" name="credentials[email]" class="form-control" autofocus required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" name="credentials[password]" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Sign In</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Change Password Modal -->
+      <!-- Change Password Modal -->
+      <div id="change-password-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Change Password</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <form id="change-password" class="form-inline signed-in-view">
+
+                <div class="form-group">
+                  <label for="pwd">Old Password:</label>
+                  <input type="password" name="passwords[old]" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">New Password:</label>
+                  <input type="password" name="passwords[new]" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+  </body>
+
+</html>
